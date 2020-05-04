@@ -6,8 +6,6 @@ import javax.persistence.*;
 @Entity
 public class Profil {
 	
-	// essai
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
@@ -32,6 +30,9 @@ public class Profil {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateDesactivation;
+	
+	@ManyToOne
+	private Compte compte;
 
 
 	public Profil() {

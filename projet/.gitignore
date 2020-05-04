@@ -32,4 +32,7 @@ build/
 
 ### Ma partie ###
 application.properties
-
+bin/
+.DS_Store
+../.project
+../.DS_Store

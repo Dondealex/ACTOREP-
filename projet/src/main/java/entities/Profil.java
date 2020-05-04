@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Entity
 public class Profil {
 	
+	// essai
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")

@@ -35,6 +35,7 @@ public class Statut {
 	public Statut() {
 		admins = new ArrayList<>();
 		comptes = new ArrayList<>();
+		profils = new ArrayList<>();
 	}
 
 	public Statut(Long id, String nom) {

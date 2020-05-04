@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -38,6 +39,10 @@ public class Administrateur {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateSortie;
 
+	@ManyToOne
+	private Statut statut;
+	
+	// CONSTRUCTORS
 	public Administrateur() {
 		
 	}
@@ -50,6 +55,15 @@ public class Administrateur {
 		this.prenom = prenom;
 		this.numEmploye = numEmploye;
 		this.dateEntree = dateEntree;
+	}
+
+	// GETTERS AND SETTERS
+	public Statut getStatut() {
+		return statut;
+	}
+
+	public void setStatut(Statut statut) {
+		this.statut = statut;
 	}
 
 	public Long getId() {

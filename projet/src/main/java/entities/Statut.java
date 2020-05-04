@@ -1,8 +1,12 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Statut {
@@ -17,16 +21,53 @@ public class Statut {
 	
 	@Column(nullable = true) 
 	private Boolean admin;
+	
+	@OneToMany(mappedBy = "statut")
+	private Collection<Administrateur> admins;
+	
+	@OneToMany(mappedBy = "statut")
+	private Collection<Compte> comptes;
+	
+	@OneToMany(mappedBy = "statut" )
+	private Collection<Profil> profils;
 
+	// CONSTRUCTORS
 	public Statut() {
-		
+		admins = new ArrayList<>();
+		comptes = new ArrayList<>();
 	}
 
 	public Statut(Long id, String nom) {
+		this();
 		this.id = id;
 		this.nom = nom;
 	}
+	
+	// GETTERS AND SETTERS
+	public Collection<Profil> getProfils() {
+		return profils;
+	}
 
+	public void setProfils(Collection<Profil> profils) {
+		this.profils = profils;
+	}
+	
+	public Collection<Compte> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(Collection<Compte> comptes) {
+		this.comptes = comptes;
+	}
+	
+	public Collection<Administrateur> getAdmins() {
+		return admins;
+	}
+
+	public void setAdmins(Collection<Administrateur> admins) {
+		this.admins = admins;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -62,8 +103,5 @@ public class Statut {
 	@Override
 	public String toString() {
 		return "Statut [id=" + id + ", nom=" + nom + ", admin=" + admin + "]";
-	}
-	
-	
-	
+	}	
 }

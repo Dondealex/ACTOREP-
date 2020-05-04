@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ReseauSocial {
@@ -19,6 +20,10 @@ public class ReseauSocial {
 	@Column(unique = true, length = 200, nullable = true)
 	private String url;
 
+	@ManyToOne
+	private Profil profil;
+	
+	// CONSTRUCTORS
 	public ReseauSocial() {
 		
 	}
@@ -27,7 +32,16 @@ public class ReseauSocial {
 		this.nom = nom;
 		this.url = url;
 	}
+	
+	// GETTERS AND SETTERS
+	public Profil getProfil() {
+		return profil;
+	}
 
+	public void setProfil(Profil profil) {
+		this.profil = profil;
+	}
+	
 	public Long getId() {
 		return id;
 	}

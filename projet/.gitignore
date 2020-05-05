@@ -36,3 +36,4 @@ bin/
 .DS_Store
 ../.project
 ../.DS_Store
+pom.xml

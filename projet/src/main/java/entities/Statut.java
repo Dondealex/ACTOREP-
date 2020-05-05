@@ -22,13 +22,13 @@ public class Statut {
 	@Column(nullable = true) 
 	private Boolean admin;
 	
-	@OneToMany(mappedBy = "statut")
+	@OneToMany//(mappedBy = "statut")
 	private Collection<Administrateur> admins;
 	
-	@OneToMany(mappedBy = "statut")
+	@OneToMany//(mappedBy = "statut")
 	private Collection<Compte> comptes;
 	
-	@OneToMany(mappedBy = "statut" )
+	@OneToMany//(mappedBy = "statut" )
 	private Collection<Profil> profils;
 
 	// CONSTRUCTORS

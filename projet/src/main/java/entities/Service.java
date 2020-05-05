@@ -24,7 +24,6 @@ public class Service {
 		
 	}
 	public Service() {
-		super();
 	}
 	
 	public String getNom() {

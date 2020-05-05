@@ -25,7 +25,7 @@ public Acteur(String nom, String description) {
 	
 }
 public Acteur() {
-	super();
+	
 }
 
 public String getNom() {

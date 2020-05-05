@@ -56,7 +56,7 @@ public class Compte {
 	@ManyToOne
 	private Ville ville;
 	
-	@OneToMany (mappedBy = "compte")
+	@OneToMany //(mappedBy = "compte")
 	private Collection<Profil> profils;
 
 	public Compte() {

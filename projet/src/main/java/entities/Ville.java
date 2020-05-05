@@ -1,5 +1,8 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,10 +13,22 @@ public class Ville {
 	@Column(name = "Nom",length = 256)
 	private String nom;
 	
+	public Collection<Compte> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(Collection<Compte> comptes) {
+		this.comptes = comptes;
+	}
+
 	@ManyToOne
 	private Departement departement;
+	
+	@OneToMany
+	private Collection<Compte> comptes;
 
 	public Ville() {
+		comptes = new ArrayList<>();
 	}
 
 	public Ville(String nom, Departement departement) {

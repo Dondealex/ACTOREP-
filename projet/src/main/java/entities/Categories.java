@@ -24,7 +24,7 @@ public class Categories {
 		
 	}
 	public Categories() {
-		super();
+		
 	}
 	
 	public String getNom() {

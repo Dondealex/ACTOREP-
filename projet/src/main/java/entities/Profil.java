@@ -37,13 +37,13 @@ public class Profil {
 	@ManyToOne
 	private Statut statut;
 	
-	@OneToMany(mappedBy = "Profil")
+	@OneToMany//(mappedBy = "Profil")
 	private Collection<ReseauSocial> reseaux;
 	
-	@ManyToMany(mappedBy = "Profil")
+	@ManyToMany//(mappedBy = "Profil")
 	private Collection<Administrateur> admins;
 
-	@ManyToMany(mappedBy = "Profil")
+	@ManyToMany//(mappedBy = "Profil")
 	private Collection<Service> services;
 
 

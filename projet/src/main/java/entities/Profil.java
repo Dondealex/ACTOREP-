@@ -8,21 +8,19 @@ public class Profil {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
 	private Long id;
 	
-	@Column(name = "Presentation", length = 612, nullable = false)
+	@Column( length = 612, nullable = false)
 	private String presentation;
 	
 	@Lob
-	@Column(name = "Photo")
 	private byte[] photoProfil;
 	
-	@Column(name = "Offre", length = 612, nullable = false)
+	@Column( length = 612, nullable = false)
 	private String offre;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DateCreation", nullable = false)
+	@Column(nullable = false)
 	private Date dateCreation;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -37,15 +35,16 @@ public class Profil {
 	@ManyToOne
 	private Statut statut;
 	
-	@OneToMany//(mappedBy = "Profil")
+
+	@OneToMany(mappedBy = "profil")
 	private Collection<ReseauSocial> reseaux;
 	
-	@ManyToMany//(mappedBy = "Profil")
+	@ManyToMany
 	private Collection<Administrateur> admins;
 
-	@ManyToMany//(mappedBy = "Profil")
-	private Collection<Service> services;
+	@ManyToMany
 
+	private Collection<Service> services;
 
 	public Profil() {
 		reseaux= new ArrayList<>();

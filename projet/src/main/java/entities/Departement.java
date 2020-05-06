@@ -1,33 +1,53 @@
 package entities;
 
-
 import javax.persistence.*;
 
 @Entity
 public class Departement {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
 	private Long id;
 	
-	@Column( length = 55, nullable = false)
+	@Column( length = 3, nullable = false)
+	private String code;
+	
+	@Column( length =255, nullable = false)
 	private String nom;
 	
-	@Column( length = 55, nullable = false)
-	private String numéroD;
+	@Column( length = 255, nullable = false)
+	private String nom_uppercase;
+	
+	@Column( length = 255, nullable = false)
+	private String slug;
+	
+	@Column( length = 120, nullable = false)
+	private String nom_soundex;
 	
 	@ManyToOne
 	private Pays pays;
 
 	public Departement() {
-		super();
 	}
 
-	public Departement(String nom, String numéroD) {
-		super();
+	public Departement(String code, String nom, String nom_uppercase, String slug, String nom_soundex, Pays pays) {
+		this.code = code;
 		this.nom = nom;
-		this.numéroD = numéroD;
+		this.nom_uppercase = nom_uppercase;
+		this.slug = slug;
+		this.nom_soundex = nom_soundex;
+		this.pays = pays;
+	}
+
+	public Departement(Long id, String code, String nom, String nom_uppercase, String slug, String nom_soundex,
+			Pays pays) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.nom = nom;
+		this.nom_uppercase = nom_uppercase;
+		this.slug = slug;
+		this.nom_soundex = nom_soundex;
+		this.pays = pays;
 	}
 
 	public Long getId() {
@@ -38,6 +58,14 @@ public class Departement {
 		this.id = id;
 	}
 
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -46,17 +74,42 @@ public class Departement {
 		this.nom = nom;
 	}
 
-	public String getNuméroD() {
-		return numéroD;
+	public String getNom_uppercase() {
+		return nom_uppercase;
 	}
 
-	public void setNuméroD(String numéroD) {
-		this.numéroD = numéroD;
+	public void setNom_uppercase(String nom_uppercase) {
+		this.nom_uppercase = nom_uppercase;
+	}
+
+	public String getSlug() {
+		return slug;
+	}
+
+	public void setSlug(String slug) {
+		this.slug = slug;
+	}
+
+	public String getNom_soundex() {
+		return nom_soundex;
+	}
+
+	public void setNom_soundex(String nom_soundex) {
+		this.nom_soundex = nom_soundex;
+	}
+
+	public Pays getPays() {
+		return pays;
+	}
+
+	public void setPays(Pays pays) {
+		this.pays = pays;
 	}
 
 	@Override
 	public String toString() {
-		return "Departement [nom=" + nom + ", numéroD=" + numéroD + "]";
-	}	
+		return "Departement [id=" + id + ", code=" + code + ", nom=" + nom + "]";
+	}
+
 
 }

@@ -24,7 +24,7 @@ public class Service {
 	private String description;
 	
 	@ManyToOne
-	private Service service;
+	private Service services;
 	
 	public Service(String nom, String description) {
 		this.nom = nom;

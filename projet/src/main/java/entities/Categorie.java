@@ -6,7 +6,7 @@ import java.util.Collection;
 import javax.persistence.*;
 
 @Entity
-public class Categories {
+public class Categorie {
 	
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
@@ -18,15 +18,15 @@ public class Categories {
 	@Column(length = 300,nullable =false)
 	private String description;
 	
-	@OneToMany(mappedBy ="Catégories")
+	@OneToMany(mappedBy ="categorie")
 	private Collection<Acteur> acteur;
 	
-	public Categories(String nom, String description) {
+	public Categorie(String nom, String description) {
 		this.nom = nom;
 		this.description=description;
 		
 	}
-	public Categories() {
+	public Categorie() {
 		acteur = new ArrayList<>();
 			
 	}
@@ -45,7 +45,7 @@ public class Categories {
 	}
 	@Override
 	public String toString() {
-		return "Catégories [id=" + id +"Nom=  "+ nom + ", Description=" + description + "]";
+		return "Catégorie [id=" + id +"Nom=  "+ nom + ", Description=" + description + "]";
 	}
 
 }

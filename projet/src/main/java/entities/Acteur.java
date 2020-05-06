@@ -20,13 +20,13 @@ public class Acteur {
 	private String description;
 	
 	@ManyToOne
-	private Categories categorie;
+	private Categorie categorie;
 	
-	@OneToMany (mappedBy = "Acteur")
-	private Collection<Service>service;
+	@OneToMany (mappedBy = "acteur")
+	private Collection<Service>services;
 	
 	public Acteur() {
-	service = new ArrayList<>();
+	 services = new ArrayList<>();
 }
 
 	

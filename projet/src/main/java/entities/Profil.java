@@ -35,6 +35,7 @@ public class Profil {
 	@ManyToOne
 	private Statut statut;
 	
+
 	@OneToMany(mappedBy = "profil")
 	private Collection<ReseauSocial> reseaux;
 	
@@ -42,6 +43,7 @@ public class Profil {
 	private Collection<Administrateur> admins;
 
 	@ManyToMany
+
 	private Collection<Service> services;
 
 	public Profil() {

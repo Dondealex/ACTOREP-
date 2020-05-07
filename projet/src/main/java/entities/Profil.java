@@ -39,11 +39,10 @@ public class Profil {
 	@OneToMany(mappedBy = "profil")
 	private Collection<ReseauSocial> reseaux;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "profils")
 	private Collection<Administrateur> admins;
 
-	@ManyToMany
-
+	@ManyToMany(mappedBy = "profils")
 	private Collection<Service> services;
 
 	public Profil() {

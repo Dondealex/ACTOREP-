@@ -22,7 +22,7 @@ public class CentreDAOService {
 		return s ;
 	
 }
-	public Service selectServiceById(String labelService) {
+	public List<Service> selectServiceById(String labelService) {
 	
 		String jpql ="select * from Service s where s.services.label = :paramLabel";
 		TypedQuery<Service> qr = em.createQuery(jpql,Service.class);

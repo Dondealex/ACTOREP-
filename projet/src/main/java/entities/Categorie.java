@@ -1,30 +1,34 @@
 package entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.*;
 
 @Entity
-public class Categories {
+public class Categorie {
 	
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column()
 	private Long id;
-	@Column(name = "Nom", length = 75, nullable = false)
+	@Column (length = 75, nullable = false)
 	private String nom;
 	
-	@Column(name = "Description", length = 300,nullable =false)
+	@Column(length = 300,nullable =false)
 	private String description;
-	public Categories(String nom, String description) {
+	
+	@OneToMany(mappedBy ="categorie")
+	private Collection<Acteur> acteur;
+	
+	public Categorie(String nom, String description) {
 		this.nom = nom;
 		this.description=description;
 		
 	}
-	public Categories() {
-		
+	public Categorie() {
+		acteur = new ArrayList<>();
+			
 	}
 	
 	public String getNom() {
@@ -41,7 +45,7 @@ public class Categories {
 	}
 	@Override
 	public String toString() {
-		return "Acteur [id=" + id +"Nom=  "+ nom + ", Description=" + description + "]";
+		return "Catégorie [id=" + id +"Nom=  "+ nom + ", Description=" + description + "]";
 	}
 
 }

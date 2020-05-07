@@ -21,7 +21,7 @@ public class Administrateur {
 	@Column(unique = true, length = 30, nullable = false)
 	private String identifiant;
 	
-	@Column(unique = true, length = 30, nullable = false)
+	@Column(length = 30, nullable = false)
 	private String mdp;
 	
 	@Column(length = 80, nullable = false)

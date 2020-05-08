@@ -19,15 +19,7 @@ public class ProjetApplicationMain {
 		SpringApplication.run(ProjetApplicationMain.class, args);
 	}
 	
-	@Autowired
-	CentreDaoVille centreDAOVille;
-	
-	@Bean
-	CommandLineRunner myMain() {
-		return args -> {
-			System.out.println(" <<<<<<<<<<< dans le Main");
-		};
-	}
+
 	
 	
 

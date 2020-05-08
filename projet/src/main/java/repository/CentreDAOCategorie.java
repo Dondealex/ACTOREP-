@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.transaction.Transactional;
 
@@ -22,8 +24,13 @@ public class CentreDAOCategorie {
 		em.persist(c);
 		return c;
 	}
-	public Categorie selectCategorieById(Long idCategorie) {
-		Categorie result = em.find(Categorie.class, idCategorie);
+	public List<Categorie> selectCategorieById(String labelCategorie) {
+		String jpql ="select * from Categorie s where c.categories.label = :paramLabel";
+		TypedQuery<Categorie> qr = em.createQuery(jpql,Categorie.class);
+		qr.setParameter("paramLabel", labelCategorie);
+		List<Categorie> result = qr.getResultList();
 		return result;
 	}
+	
+
 }

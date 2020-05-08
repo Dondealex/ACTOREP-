@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,11 @@ public class CentreDAOActeur {
 		em.persist(a);
 		return a;
 	}
-	public Acteur selectActeurById(Long idActeur) {
-		Acteur result = em.find(Acteur.class, idActeur);
+	public List<Acteur> selectActeurById(String labelActeur) {
+		String jpql ="select * from Acteur a where a.acteurs.label = :paramLabel";
+		TypedQuery<Acteur> qr = em.createQuery(jpql,Acteur.class);
+		qr.setParameter("paramLabel", labelActeur);
+		List<Acteur> result = qr.getResultList();
 		return result;
 	}
 	

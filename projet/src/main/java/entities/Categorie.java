@@ -19,7 +19,7 @@ public class Categorie {
 	private String description;
 	
 	@OneToMany(mappedBy ="categorie")
-	private Collection<Acteur> acteur;
+	private Collection<Acteur> acteurs;
 	
 	public Categorie(String nom, String description) {
 		this.nom = nom;
@@ -27,7 +27,7 @@ public class Categorie {
 		
 	}
 	public Categorie() {
-		acteur = new ArrayList<>();
+		acteurs = new ArrayList<>();
 			
 	}
 	

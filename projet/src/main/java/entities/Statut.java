@@ -13,6 +13,7 @@ public class Statut {
 	
 	//PROPRIETES
 	@Id
+	@Column(unique = true, length = 4, nullable = false)
 	private String id;
 	
 	@Column(unique = true, length = 80, nullable = false)

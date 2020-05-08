@@ -22,64 +22,6 @@ public class ProjetApplicationMain {
 		SpringApplication.run(ProjetApplicationMain.class, args);
 	}
 	
-	@Autowired
-	CentreDaoVille centreDaoVille;
-	
-	@Autowired
-	CentreDAOTypeActeur centreDAOTypeActeur;
-	
-	@Bean
-	CommandLineRunner myMain() {
-		return args -> {
-			
-			System.out.println(" <<<<<<<<<<< dans le Main");
 
-			// ********************** VILLE **********************
-						// Ne fonctionne pas pour la Ville avec le département
-						/*Departement dept = new Departement(7L);
-						System.out.println(" <<<<<<<<<<< Dept "); 
-						
-						centreDAOVille.insertVille("lichy", dept);
-						System.out.println(" <<<<<<<<<<< Clichy");	
-						
-						centreDAOVille.insertVille("aris", dept);
-						System.out.println(" <<<<<<<<<<< Paris");
-						
-						centreDAOVille.insertVille("ergy", dept);
-						System.out.println(" <<<<<<<<<<< Cergy");*/
-						
-						
-						// ********************** TYPE ACTEUR **********************
-						// insertion Type d'acteur
-					/*	centreDAOTypeActeur.insertTypeActeur("Personne", "personne réelle");
-						centreDAOTypeActeur.insertTypeActeur("Organise", "société"); */
-						
-						/*modification Type d'acteur
-						//centreDAOTypeActeur.updateTypeActeur(2L, "eh eh", "iiiiiiiiiiiii");
-						
-						
-						// delete Type d'acteur
-						//centreDAOTypeActeur.deleteTypeActeur(1L);
-						
-						
-						
-						// Select Type d'acteur
-						TypeActeur ta0 = centreDAOTypeActeur.selectTypeActeurById(1L);
-						
-						// Select de tous les type d'acteur
-						centreDAOTypeActeur.selectTypeActeur();
-						*/
-						
-						System.out.println(" <<<<<<<<<<< FIN >>>>>>>>>>>>");
-						
-			
-		};
-	}
-	
-	
-	
-
-	
-	
 
 }

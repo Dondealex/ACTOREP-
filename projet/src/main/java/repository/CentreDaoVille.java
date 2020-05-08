@@ -19,9 +19,12 @@ public class CentreDaoVille {
 	
 	public Ville insertVille (String nom, Departement departement) {
 		System.out.println("insert ville");
-		Ville v = new Ville (nom, departement);
+		Ville v = new Ville (nom);
+		v.setDepartement(departement);
 		em.persist(v);
 		return v ;
 	}
+	
+	
 
 }

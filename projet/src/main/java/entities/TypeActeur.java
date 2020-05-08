@@ -19,14 +19,25 @@ public class TypeActeur {
 	@Column(unique = true, length = 100, nullable = false)
 	private String description;
 	
-	@OneToMany //(mappedBy = "typeActeur")
+	@OneToMany (mappedBy = "typeActeur")
 	private Collection<Compte> comptes;
 
 	public TypeActeur() {
 		comptes = new ArrayList<>();
 	}
+	
+	
+
+	public TypeActeur(String nom, String description) {
+		this();
+		this.nom = nom;
+		this.description = description;
+	}
+
+
 
 	public TypeActeur(Long id, String nom, String description, Collection<Compte> comptes) {
+		this();
 		this.id = id;
 		this.nom = nom;
 		this.description = description;

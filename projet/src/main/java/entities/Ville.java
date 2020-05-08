@@ -12,26 +12,25 @@ public class Ville {
 	@Id
 	@Column(name = "Nom",length = 256)
 	private String nom;
-	
-	public Collection<Compte> getComptes() {
-		return comptes;
-	}
 
-	public void setComptes(Collection<Compte> comptes) {
-		this.comptes = comptes;
-	}
 
 	@ManyToOne
 	private Departement departement;
 	
-	@OneToMany
+	@OneToMany (mappedBy = "ville")
 	private Collection<Compte> comptes;
 
 	public Ville() {
 		comptes = new ArrayList<>();
 	}
+	
+	public Ville(String nom) {
+		this();
+		this.nom = nom;
+	}
 
 	public Ville(String nom, Departement departement) {
+		this();
 		this.nom = nom;
 		this.departement = departement;
 	}
@@ -50,5 +49,13 @@ public class Ville {
 
 	public void setDepartement(Departement departement) {
 		this.departement = departement;
+	}
+	
+	public Collection<Compte> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(Collection<Compte> comptes) {
+		this.comptes = comptes;
 	}
 }

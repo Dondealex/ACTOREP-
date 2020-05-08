@@ -27,10 +27,10 @@ public class Compte {
 	private String email;
 	
 	@Column(length = 30, nullable = false)
-	private String MDP;
+	private String mdp;
 	
 	@Column(length = 100, nullable = false)
-	private String Rue;
+	private String rue;
 	
 	@Column(length = 30, nullable = false)
 	private String codePostal;
@@ -56,7 +56,7 @@ public class Compte {
 	@ManyToOne
 	private Ville ville;
 	
-	@OneToMany //(mappedBy = "compte")
+	@OneToMany (mappedBy = "compte")
 	private Collection<Profil> profils;
 
 	public Compte() {
@@ -64,16 +64,17 @@ public class Compte {
 		
 	}
 
-	public Compte(Long id, String nom, String prenom, String nomOrganisation, String email, String mDP, String rue,
+	public Compte(Long id, String nom, String prenom, String nomOrganisation, String email, String mdp, String rue,
 			String codePostal, String tel, Date dateNaiss, Date dateCrea, String numSiret, TypeActeur typeActeur,
 			Statut statut, Ville ville, Collection<Profil> profils) {
+		this();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.nomOrganisation = nomOrganisation;
 		this.email = email;
-		MDP = mDP;
-		Rue = rue;
+		this.mdp = mdp;
+		this.rue = rue;
 		this.codePostal = codePostal;
 		this.tel = tel;
 		this.dateNaiss = dateNaiss;
@@ -126,19 +127,19 @@ public class Compte {
 	}
 
 	public String getMDP() {
-		return MDP;
+		return mdp;
 	}
 
-	public void setMDP(String mDP) {
-		MDP = mDP;
+	public void setMDP(String mdp) {
+		this.mdp = mdp;
 	}
 
 	public String getRue() {
-		return Rue;
+		return rue;
 	}
 
 	public void setRue(String rue) {
-		Rue = rue;
+		this.rue = rue;
 	}
 
 	public String getCodePostal() {
@@ -216,7 +217,7 @@ public class Compte {
 	@Override
 	public String toString() {
 		return "Compte [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", nomOrganisation=" + nomOrganisation
-				+ ", email=" + email + ", MDP=" + MDP + ", Rue=" + Rue + ", codePostal=" + codePostal + ", tel=" + tel
+				+ ", email=" + email + ", MDP=" + mdp + ", Rue=" + rue + ", codePostal=" + codePostal + ", tel=" + tel
 				+ ", dateNaiss=" + dateNaiss + ", dateCrea=" + dateCrea + ", numSiret=" + numSiret + ", typeActeur="
 				+ typeActeur + ", statut=" + statut + ", ville=" + ville + ", profils=" + profils + "]";
 	}

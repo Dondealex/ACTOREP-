@@ -1,12 +1,18 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 
 @Entity
-public class Departement {
+public class Departement implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	private Long id;
 	

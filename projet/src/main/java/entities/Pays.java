@@ -1,9 +1,16 @@
 package entities;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
-public class Pays {
+public class Pays implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	private Long id;

@@ -16,7 +16,7 @@ import entities.Administrateur;
 
 @Repository
 @Transactional
-public class AdminDAO {
+public class AdminDaoImpl {
 
 	@Autowired
 	private EntityManager em;

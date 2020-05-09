@@ -14,7 +14,7 @@ import entities.Statut;
 
 @Repository
 @Transactional
-public class StatutDAO {
+public class StatutDaoImpl {
 
 	@Autowired
 	private EntityManager em;

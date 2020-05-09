@@ -20,7 +20,7 @@ public class Service {
 	private String description;
 	
 	@ManyToOne
-	private Acteur acteurs;
+	private Acteur acteur;
 	
 	@ManyToMany
 	private Collection<Profil> profils;

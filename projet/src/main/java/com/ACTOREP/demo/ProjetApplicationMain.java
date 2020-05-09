@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import repository.CentreDAOTypeActeur;
 import repository.CentreDaoVille;
 
 @SpringBootApplication
@@ -18,9 +19,6 @@ public class ProjetApplicationMain {
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetApplicationMain.class, args);
 	}
-	
-
-	
 	
 
 }

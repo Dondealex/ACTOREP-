@@ -14,7 +14,7 @@ import entities.ReseauSocial;
 
 @Repository
 @Transactional
-public class ResSocDaoImpl {
+public class ResSocDaoImpl implements ResSocDao {
 	
 	@Autowired
 	private EntityManager em;

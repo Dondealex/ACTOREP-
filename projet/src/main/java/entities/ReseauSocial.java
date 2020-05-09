@@ -9,7 +9,8 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class ReseauSocial {
-
+	
+	//PROPRIETES
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -19,7 +20,8 @@ public class ReseauSocial {
 	
 	@Column(unique = true, length = 200, nullable = true)
 	private String url;
-
+	
+	// ASSOCIATION
 	@ManyToOne
 	private Profil profil;
 	

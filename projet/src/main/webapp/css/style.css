@@ -53,3 +53,9 @@ h1{
 	margin-left:100px;
 	margin-right: 100px;
 }
+
+.photoprofil
+{
+	max-width: 200px;
+	 width: 30%;
+}

@@ -3,8 +3,13 @@ package repository;
 import java.util.*;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import entities.*;
 
+@Repository("profilRep")
+@Transactional
 public interface ProfilRepository extends JpaRepository<Profil, Long> {
 	
 	@Query("select p.services from Profil p where p.id = :x") 

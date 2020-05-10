@@ -8,12 +8,22 @@ public class HomeCRTL {
 	
 	@RequestMapping(value = {"/","/index"})
 	public String afficheAccueil() {
-		return "jsp/jspHome";
+		return "/jspHome";
 	}
 	
 	@RequestMapping(value = {"/vers-jspInscription"})
 	public String afficheInscription() {
-		return "jsp/jspInscription";
+		return "/jspInscription";
+	}
+	
+	@RequestMapping(value = {"/vers-jspConnexion"})
+	public String afficheConnexion() {
+		return "/jspConnexion";
+	}
+	
+	@RequestMapping(value = {"/vers-jspProfil"})
+	public String afficheProfil() {
+		return "/jspProfil";
 	}
 	
 

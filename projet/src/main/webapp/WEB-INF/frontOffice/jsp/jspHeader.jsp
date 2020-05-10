@@ -13,7 +13,7 @@
 	          <div id="tabs">
 			                <li><a href="vers-jspActeurs" id="tab-1">Tous nos acteurs</a></li>
 			                <li><a href="vers-jspInscription" id="tab-2"  >Proposer vos services</a></li>  
-			                <li><a href="vers-jspConnextion" id="tab-3" >Connexion</a></li>  
+			                <li><a href="vers-jspConnexion" id="tab-3" >Connexion</a></li>  
 	          </div>
 	     </ul>  
 	</div>

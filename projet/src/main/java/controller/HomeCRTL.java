@@ -11,6 +11,11 @@ public class HomeCRTL {
 		return "/jspHome";
 	}
 	
+	@RequestMapping(value= "/vers-jspHome")
+	public String afficherHome() {
+		return "/jspHome";
+	}
+	
 	@RequestMapping(value = {"/vers-jspInscription"})
 	public String afficheInscription() {
 		return "/jspInscription";
@@ -21,11 +26,34 @@ public class HomeCRTL {
 		return "/jspConnexion";
 	}
 	
+	@RequestMapping(value = {"/vers-jspContact"})
+	public String afficheContact() {
+		return "/jspContact";
+	}
+	
+	@RequestMapping(value = {"/vers-jspQuiSommesNous"})
+	public String afficheQuiSommesNous() {
+		return "/jspQuiSommesNous";
+	}
+	
+	@RequestMapping(value = {"/vers-jspCommentCaMarche"})
+	public String afficheCommentCaMarche() {
+		return "/jspCommentCaMarche";
+	}
+	
 	@RequestMapping(value = {"/vers-jspProfil"})
 	public String afficheProfil() {
 		return "/jspProfil";
 	}
 	
-
+	@RequestMapping(value= "/seConnecter")
+	public String seConnecter() {
+		return "/jspProfil";
+	}
+	
+	@RequestMapping(value= "/rechercher")
+	public String rechercher() {
+		return "/jspResultatR";
+	}
 
 }

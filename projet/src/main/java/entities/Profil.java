@@ -41,14 +41,13 @@ public class Profil implements Serializable{
 	@ManyToOne
 	private Statut statut;
 	
-
 	@OneToMany(mappedBy = "profil")
 	private Collection<ReseauSocial> reseaux;
 	
 	@ManyToMany(mappedBy = "profils")
 	private Collection<Administrateur> admins;
 
-	@ManyToMany(mappedBy = "profils")
+	@ManyToMany(mappedBy = "profils",fetch=FetchType.EAGER)
 	private Collection<Service> services;
 
 	public Profil() {
@@ -68,19 +67,8 @@ public class Profil implements Serializable{
 		this.dateDesactivation = dateDesactivation;
 	}
 
-	public Profil(String presentation, String offre, Date dateCreation, Date dateModification, Date dateDesactivation) {
-		this();
-		this.presentation = presentation;
-		this.offre = offre;
-		this.dateCreation = dateCreation;
-		this.dateModification = dateModification;
-		this.dateDesactivation = dateDesactivation;
-	}
-
-
 	public Profil(String presentation, byte[] photoProfil, String offre, Date dateCreation, Date dateModification,
-			Date dateDesactivation, Compte compte, Statut statut, Collection<ReseauSocial> reseaux,
-			Collection<Administrateur> admins, Collection<Service> services) {
+			Date dateDesactivation, Compte compte) {
 		this();
 		this.presentation = presentation;
 		this.photoProfil = photoProfil;
@@ -89,10 +77,6 @@ public class Profil implements Serializable{
 		this.dateModification = dateModification;
 		this.dateDesactivation = dateDesactivation;
 		this.compte = compte;
-		this.statut = statut;
-		this.reseaux = reseaux;
-		this.admins = admins;
-		this.services = services;
 	}
 
 	public Compte getCompte() {

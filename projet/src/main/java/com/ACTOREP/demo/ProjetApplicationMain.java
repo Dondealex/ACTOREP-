@@ -1,47 +1,23 @@
-	package com.ACTOREP.demo;
+package com.ACTOREP.demo;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.EntityManager;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
-
-import entities.Departement;
-import entities.Statut;
-import entities.TypeActeur;
-import entities.Ville;
-import repository.CompteDao;
-import repository.TypeActeurDao;
-import repository.VilleDao;
-import repository.DepartementRepository;
-import entities.Acteur;
-import entities.Administrateur;
-import entities.Categorie;
-import entities.ReseauSocial;
-import entities.Service;
-import entities.Statut;
-import repository.AdminDaoImpl;
-import repository.CentreDAOActeur;
-import repository.CentreDAOCategorie;
-import repository.CentreDAOService;
-import repository.ResSocDaoImpl;
-import repository.StatutDaoImpl;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.*;
+import org.springframework.data.jpa.repository.JpaRepository;
+import entities.*;
+import metier.ProfilMetierImpl;
+import repository.*;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"repository","controller","metier","session"})
 @EntityScan(basePackages = {"entities"})
-@EnableJpaRepositories(basePackageClasses = DepartementRepository.class)
-
+@EnableJpaRepositories(basePackageClasses = {IDepartementRepository.class , IProfilRepository.class})
 public class ProjetApplicationMain {
 
 	public static void main(String[] args) {
@@ -158,6 +134,7 @@ CommandLineRunner myMain() {
 		};
 	}
 	
+}
 
 }
 

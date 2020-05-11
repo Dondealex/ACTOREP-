@@ -10,7 +10,7 @@ import entities.*;
 
 @Repository("profilRep")
 @Transactional
-public interface ProfilRepository extends JpaRepository<Profil, Long> {
+public interface IProfilRepository extends JpaRepository<Profil, Long> {
 	
 	@Query("select p.services from Profil p where p.id = :x") 
 	public List<Service> findServicesByProfil(@Param("x")Long id);
@@ -19,6 +19,6 @@ public interface ProfilRepository extends JpaRepository<Profil, Long> {
 	public List<ReseauSocial> findReseauxByProfil(@Param("x")Long id);
 	
 	@Query("select p from Profil p where p.statut.id = :x")
-	public List<Profil> findProfilActif(@Param("x")Long id);
+	public List<Profil> findProfilByIdStatus(@Param("x")String id);
 
 }

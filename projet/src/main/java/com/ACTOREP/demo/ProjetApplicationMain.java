@@ -3,6 +3,8 @@ package com.ACTOREP.demo;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -134,7 +136,5 @@ CommandLineRunner myMain() {
 		};
 	}
 	
-}
-
 }
 

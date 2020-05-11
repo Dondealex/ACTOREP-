@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>Fiche inscription</title>
+<link rel="stylesheet" href="css/style.css" >
+<%@ include file = "jspHeader.jsp" %>
 </head>
 	<body>
 	<h1> ACTOREP </h1>
@@ -58,7 +60,13 @@
 			</form>
 		</section>
 		
+			<br>
+	<br>
+	<br>
+	<br>
+	<%@ include file = "jspFooter.jsp" %>
 	
 		
 	</body>
+	
 </html>

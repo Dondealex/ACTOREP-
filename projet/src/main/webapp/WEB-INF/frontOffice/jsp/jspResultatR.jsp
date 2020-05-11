@@ -4,18 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index</title>
+<title>Resultats de recherche</title>
 <%@ include file = "jspHeader.jsp" %>
 <link rel="stylesheet" href="css/style.css" >
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
 	<h1>Trouvez votre professionnel</h1>
-	<br>
-	<form action="rechercher" method="post" id="f1">
+	<form action="rechercher" method="post" id="f12">
 		<select>
 			
 		</select>
@@ -23,18 +18,13 @@
 			
 		</select>
 		<input type= text placeholder= "Numéro/ Nom du département">
-		<br>
-		
-		<input id="submit" type="submit" value="Rechercher">
-	
+		<input id="submit2" type="submit" value="Rechercher">
 	</form>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<section id="sect1">
+	
+	</section>
+	
 	<%@ include file = "jspFooter.jsp" %>
 </body>
 </html>

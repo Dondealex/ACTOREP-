@@ -1,41 +1,114 @@
 @charset "ISO-8859-1";
 
-h1{
+h1 {
 	text-align: center;
+}
+
+#formCon{
+	text-align: center;
+}
+
+.requis{
+	color: red;
+}
+
+#cadre{
+	border: 1px grey solid; 
+	padding: 10px;
+	padding-bottom:25px;
+	margin-left:280px;
+	margin-right: 280px;
+}
+
+#tab-0{
+	text-transform:uppercase;
+    text-decoration:none; 
+    float: left;
+}
+
+#acto{
+	border: 1px grey solid; 
+	 width: 1080px; 
+    height: 50px; 
+    margin-left:25px;
+    padding-bottom: 10px; 
 }
 
 #tabs{  
     width:300px;  
-    margin:20px auto; 
     position:relative; 
-	border: 1px grey solid;  
+    display: table;
+    color:#333; 
+	border: 1px grey solid;
+	position: inherit;
+	margin-left: 380px;
 }   
 
-#navigation li{   
-    display:inline; 
-    list-style: none;
+#tabs li{   
+    width:300px;
+    display: table-cell; 
 }  
-#navigation li a{  
+
+#tabs li a{  
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .4);
     display: inline-table;
     text-decoration:none; 
+    width: 200px; 
+    height: 20px; 
     padding:5px;   
     margin-right:2px;  
-    background:pink;  
-    color:#333;   
-     float: left; 
+     float: right; 
 } 
 
-#acto{
-	padding:0px; 
-	border: 1px grey solid;  
+ul li a:hover{
+    color: green;
 }
 
-.picto{
+ul li a:active, focus{
+	color: RED;
+}
+
+#menuFooter {
+    margin-left:25px;
+	width:1030px;  
+    position:relative; 
+    display: table;
+    color:#333; 
+	border: 1px grey solid;  
+		position: inherit;
+}
+
+#menuFooter li{   
+    width:300px;
+    display: table-cell; 
+}  
+
+#menuFooter li a{  
+    display: inline-table;
+    text-decoration:none; 
+    width: 200px; 
+    height: 20px; 
+    padding:5px;   
+    margin-right:2px;  
+     float: right; 
+} 
+
+#submit{
+	display:block; 
+    margin:auto;
+    width: 200px; 
+    height: 30px; 
+    border: 1px solid greytext; 
+    text-align: center; 
+    background-color: graytext;
+}
+
+.photo{
     filter: brightness(110%) contrast(90%);
     border: 2px white solid;
     margin: 5px;
-    width: 40px;
-    height: 40px;
+    width: 18px;
+    height: 18px;
     border-radius: 10px;
     background-color: white;
     box-shadow: 0px 2px 2px darkgreen;
@@ -43,8 +116,11 @@ h1{
     vertical-align: middle;
 }
 
-#menuFooter {
-    float: right;
+#sect1{
+	border: 1.5px grey solid;
+	width: 250px;
+    height: 1000px;
+    margin-left: 25px;
 }
 
 #f1{
@@ -52,6 +128,13 @@ h1{
 	border: 3px grey solid;
 	margin-left:100px;
 	margin-right: 100px;
+}
+
+#f12{
+	padding:5px;
+	border: 3px grey solid;
+	margin-left:25px;
+	margin-right: 25px;
 }
 
 .photoprofil

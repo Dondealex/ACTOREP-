@@ -1,13 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>Connexion</title>
+<link rel="stylesheet" href="css/style.css" >
+
 </head>
 <body>
-<a href="vers-jspProfil">vers le profil</a>
+	<br>
+	<br>
+	<br>
+	<div id="cadre">
+	<h1>ACTOREP</h1>
+		<form id="formCon" method="post" action="seConnecter">
+			<br />
+			<label for="Email">Email<span class="requis">*</span></label>
+			<input type="text" name="email">
+			<br />
+			<br>
+			<label for="mdp">Mot de passe<span class="requis">*</span></label>
+			<input type= "password" name="mdp">
+			<br />
+			<br />
+			<br>
+			<input id="submit" type="submit" value="Se connecter">
+		</form>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<%@ include file = "jspFooter.jsp" %>
+	
 
 </body>
 </html>

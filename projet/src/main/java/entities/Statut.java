@@ -1,5 +1,6 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -9,8 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Statut {
+public class Statut implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//PROPRIETES
 	@Id
 	@Column(unique = true, length = 4, nullable = false)

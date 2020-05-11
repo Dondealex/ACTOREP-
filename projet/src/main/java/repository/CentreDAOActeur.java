@@ -18,11 +18,15 @@ public class CentreDAOActeur {
 	@Autowired
 	private EntityManager em;
 	
-	public Acteur insertActeur (String nom, String description) {
-		Acteur a = new Acteur(nom,description);
+	
+	public Acteur insertActeur (String nom, String description, Categorie categorie) {
+		Acteur a = new Acteur(nom,description, categorie);
 		em.persist(a);
 		return a;
 	}
+	
+	
+	
 	public List<Acteur> selectActeurById(String labelActeur) {
 		String jpql ="select * from Acteur a where a.acteurs.label = :paramLabel";
 		TypedQuery<Acteur> qr = em.createQuery(jpql,Acteur.class);

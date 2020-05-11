@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.Administrateur;
 
-@Repository
+@Repository("adminDao")
 @Transactional
 public class AdminDaoImpl implements AdminDao {
 
@@ -60,5 +61,44 @@ public class AdminDaoImpl implements AdminDao {
 		int deletedCount = qr.executeUpdate();
 		return deletedCount;
 	}
+
+	public Administrateur verifyAdmin(String idtf, String mdp) {
+		String jpql = "select a from Administrateur a where a.identifiant = :paramIdtf";
+		TypedQuery<Administrateur> qr = em.createQuery(jpql, Administrateur.class);
+		qr.setParameter("paramIdtf", idtf);
+		Administrateur a;
+		try {
+				a = qr.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+		if(a!=null) {
+			if (a.getMdp().equals(mdp)) {
+				return a;
+			} 		
+		}
+		return null;
+	}
+	
+	public Boolean findAdmin(String idtf, String mdp) {
+		String jpql = "select a from Administrateur a where a.identifiant = :paramIdtf";
+		TypedQuery<Administrateur> qr = em.createQuery(jpql, Administrateur.class);
+		qr.setParameter("paramIdtf", idtf);
+		Administrateur a;
+		try {
+				a = qr.getSingleResult();
+		} catch (NoResultException e) {
+			return false;
+		}
+		
+		if(a!=null) {
+			if (a.getMdp().equals(mdp)) {
+				return true;
+			} 		
+		}
+		return false;
+		}
+
 	
 }
+	

@@ -1,5 +1,6 @@
 package repository;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -28,25 +29,29 @@ public class CompteDaoImpl implements CompteDao  {
 	@Autowired
 	private EntityManager em;
 
+	
 	@Override
 	public Compte insertCompteIndividu(String nom, String prenom, String email, String mdp, String rue,
-			String codePostal, String tel, Date dateNaiss, TypeActeur typeActeur, Statut statut, Ville ville) {
-		// TODO Auto-generated method stub
-		return null;
+			String codePostal, String tel, Date dateNaiss, TypeActeur typeActeur,
+			Statut statut, Ville ville) {
+		Compte c = new Compte(nom, prenom, email, mdp, rue, codePostal, tel, dateNaiss, typeActeur, statut, ville);
+		em.persist(c);
+		return c;
 	}
 
 	@Override
-	public Compte insertCompteOrganistion(String nomOrganisation, String email, String mdp, String rue,
+	public Compte insertCompteOrganisation(String nomOrganisation, String email, String mdp, String rue,
 			String codePostal, String tel, Date dateCrea, String numSiret, TypeActeur typeActeur, Statut statut,
 			Ville ville) {
-		// TODO Auto-generated method stub
-		return null;
+		Compte c = new Compte(nomOrganisation, email, mdp, rue, codePostal, tel, dateCrea,  numSiret, typeActeur, statut, ville);
+		em.persist(c);
+		return c;
 	}
 
 	@Override
 	public Compte selectCompteById(Long idCompte) {
-		// TODO Auto-generated method stub
-		return null;
+		Compte c = em.find(Compte.class, idCompte);
+		return c;
 	}
 
 	@Override

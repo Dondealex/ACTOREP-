@@ -40,12 +40,10 @@ public class CompteDaoImpl implements CompteDao  {
 	}
 
 	@Override
-	public Compte insertCompteOrganistion(String nomOrganisation, String email, String mdp, String rue,
+	public Compte insertCompteOrganisation(String nomOrganisation, String email, String mdp, String rue,
 			String codePostal, String tel, Date dateCrea, String numSiret, TypeActeur typeActeur, Statut statut,
 			Ville ville) {
-		Compte c = new Compte(nomOrganisation, email, mdp, rue,
-				 codePostal, tel, dateCrea,  numSiret, typeActeur, statut,
-				 ville);
+		Compte c = new Compte(nomOrganisation, email, mdp, rue, codePostal, tel, dateCrea,  numSiret, typeActeur, statut, ville);
 		em.persist(c);
 		return c;
 	}

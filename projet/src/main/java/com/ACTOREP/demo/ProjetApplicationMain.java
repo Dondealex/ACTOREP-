@@ -15,22 +15,24 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
-import entities.Compte;
 import entities.Departement;
 import entities.Statut;
 import entities.TypeActeur;
 import entities.Ville;
 import repository.CompteDao;
-import repository.CompteDaoImpl;
 import repository.TypeActeurDao;
-import repository.TypeActeurDaoImpl;
 import repository.VilleDao;
 import repository.DepartementRepository;
-
+import entities.Acteur;
 import entities.Administrateur;
+import entities.Categorie;
 import entities.ReseauSocial;
+import entities.Service;
 import entities.Statut;
 import repository.AdminDaoImpl;
+import repository.CentreDAOActeur;
+import repository.CentreDAOCategorie;
+import repository.CentreDAOService;
 import repository.ResSocDaoImpl;
 import repository.StatutDaoImpl;
 
@@ -64,9 +66,16 @@ TypeActeurDao TypeActeurDao;
 @Autowired
 CompteDao compteDao;
 
+@Autowired
+CentreDAOCategorie centreDAOCategorie;
 
 @Autowired
-private EntityManager em;
+CentreDAOActeur centreDAOActeur;
+
+@Autowired
+CentreDAOService centreDAOService;
+
+
 	
 @Bean
 CommandLineRunner myMain() {
@@ -91,30 +100,58 @@ CommandLineRunner myMain() {
 		ReseauSocial rs01 = rsd.insertReseauSoc("Youtube", "aaaaaaaa");
 		ReseauSocial rs02 = rsd.insertReseauSoc("LinkedIn", "bbbbbbbb");
 		
-		Departement dept = new Departement(7L);
-		villeDao.insertVille("Clichy", dept);
-		villeDao.insertVille("Paris", dept);
-		villeDao.insertVille("Cergy", dept);
+		Departement dept01 = new Departement(75L);
+		Departement dept02 = new Departement(92L);
+		Departement dept03 = new Departement(95L);
+		Ville v01 = villeDao.insertVille("Paris", dept01);
+		Ville v02 = villeDao.insertVille("Clichy", dept02);
+		Ville v03 = villeDao.insertVille("Cergy", dept03);
 		
-		TypeActeurDao.insertTypeActeur("Personne", "personne réelle");
-		TypeActeurDao.insertTypeActeur("Organise", "société");
+		TypeActeur ta01 = TypeActeurDao.insertTypeActeur("Personne", "personne réelle");
+		TypeActeur ta02 = TypeActeurDao.insertTypeActeur("Organise", "société");
 		
 		Date dt01 = new Date();
 		Date dt02 = new Date(1986, 11, 23);
-		TypeActeur ta01 = em.find(TypeActeur.class, 1L);
-		TypeActeur ta02 = em.find(TypeActeur.class, 2L);
-		Statut stt01 = em.find(Statut.class, "C001");
-		Statut stt02 = em.find(Statut.class, "C002");
-		Ville v01 = em.find(Ville.class, 1L);
-		Ville v02 = em.find(Ville.class, 2L);	
-		compteDao.insertCompteIndividu("Pitt", "Brad", "brad.pitt@gmail.com", "bpitt", "12 rue joli", "75005", "333333", dt01, ta01, stt01, v01);
-		compteDao.insertCompteIndividu("Kakou", "Alban", "kakou.alban@hotmail.com", "kalb", "70 rue du javelot", "75013", "5555", dt02, ta02, stt02, v02);
-		compteDao.insertCompteOrganistion("MSF", "msf@orga.fr", "msf", "9 rue des medecins", "69001", "8888", dt02, "rsc555", ta02, st01, v01);
-		compteDao.insertCompteOrganistion("HJH", "HJH@hotmail.fr", "HJH", "13 rue pinedes", "75009", "22222", dt01, "sts999", ta01, st02, v02);
+		compteDao.insertCompteIndividu("Pitt", "Brad", "brad.pitt@gmail.com", "bpitt", "12 rue joli", "75005", "333333", dt01, ta01, st01, v01);
+		compteDao.insertCompteIndividu("Kakou", "Alban", "kakou.alban@hotmail.com", "kalb", "70 rue du javelot", "75013", "5555", dt02, ta02, st02, v02);
+		compteDao.insertCompteOrganisation("MSF", "msf@orga.fr", "msf", "9 rue des medecins", "69001", "8888", dt02, "rsc555", ta02, st01, v01);
+		compteDao.insertCompteOrganisation("HJH", "HJH@hotmail.fr", "HJH", "13 rue pinedes", "75009", "22222", dt01, "sts999", ta01, st02, v02);
+		
 		
 	
-			
-						
+		Categorie ca1 = centreDAOCategorie.insertCategorie("Santé","Tout les professionnels de santé");
+		Categorie ca2 = centreDAOCategorie.insertCategorie("Sport","Tout les professionnels Sportif ");
+		Categorie ca3 = centreDAOCategorie.insertCategorie("Consulting","");
+		Categorie ca4 = centreDAOCategorie.insertCategorie("Informatique","");
+		
+
+		Acteur ac1 = centreDAOActeur.insertActeur( "Kinésithérapeute "," ", ca1);
+		Acteur ac2 = centreDAOActeur.insertActeur("Infirmier ", " ", ca1);
+		Acteur ac3 = centreDAOActeur.insertActeur("Coach Sportif "," ", ca2);
+		Acteur ac4 = centreDAOActeur.insertActeur("Danseur"," ", ca2);
+		Acteur ac5 = centreDAOActeur.insertActeur("Négociation "," ", ca3);
+		Acteur ac6 = centreDAOActeur.insertActeur("Marketing"," ", ca3);
+		Acteur ac7 = centreDAOActeur.insertActeur("Developpeur ","Java et Javascript ", ca4);
+		Acteur ac8 = centreDAOActeur.insertActeur("IUX Designer "," ", ca4);
+
+		
+		Service s1 = centreDAOService.insertService("Consultation", " ", ac1);
+		Service s2 = centreDAOService.insertService("Consultation à domicile", "", ac1);
+		Service s3 = centreDAOService.insertService("Consultation à domicile", "", ac2);
+		Service s4 = centreDAOService.insertService("Consultation à domicile le week-end","", ac2);
+		Service s5 = centreDAOService.insertService("A domicile", "", ac3);
+		Service s6 = centreDAOService.insertService("Cours en groupe", "", ac3);
+		Service s7 = centreDAOService.insertService("Cours individuel", "", ac4);
+		Service s8 = centreDAOService.insertService("Spectacle", "", ac4);
+		Service s9 = centreDAOService.insertService("Stage en groupe", "apprendre à négocier", ac5); 
+		Service s10 = centreDAOService.insertService("Cours individuel", "apprendre à négocier", ac5);
+		Service s11 = centreDAOService.insertService("Stratégie publicitaire", "quelle stratégie adoptée pour votre entreprise", ac6); 
+		Service s12 = centreDAOService.insertService("Stratégie lancement site internet", "comment déployer votre site", ac6);
+		Service s13 = centreDAOService.insertService("Développement application", "développer une nouvelle application", ac7); 
+		Service s14 = centreDAOService.insertService("Support débogage", "maintenance sur une application", ac7);
+		Service s15 = centreDAOService.insertService("Conseil site internet", "", ac8); 
+		Service s16 = centreDAOService.insertService("Conception site internet", "", ac8);
+				
 						System.out.println(" <<<<<<<<<<< FIN >>>>>>>>>>>>");
 						
 			

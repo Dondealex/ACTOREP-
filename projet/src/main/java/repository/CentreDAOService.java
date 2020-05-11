@@ -13,15 +13,19 @@ import entities.*;
 @Transactional
 public class CentreDAOService {
 	
+	@Autowired
 	private EntityManager em;
 	
-	public Service insertService (String nom, String description) {
-
-		Service s = new Service (nom,description);
+	
+	
+	public Service insertService(String nom, String description, Acteur acteur) {
+		Service s = new Service(nom, description, acteur);
 		em.persist(s);
 		return s ;
 	
 }
+	
+	
 	public List<Service> selectServiceById(String labelService) {
 	
 		String jpql ="select * from Service s where s.services.label = :paramLabel";

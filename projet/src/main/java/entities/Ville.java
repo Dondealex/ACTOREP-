@@ -1,41 +1,57 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
 
 @Entity
-
-public class Ville {
+public class Ville implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	@Id
-	@Column(name = "Nom",length = 256)
-	private String nom;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-	public Collection<Compte> getComptes() {
-		return comptes;
-	}
+	
+	@Column(length = 256, nullable = false)
+	private String nom;
 
-	public void setComptes(Collection<Compte> comptes) {
-		this.comptes = comptes;
-	}
 
 	@ManyToOne
 	private Departement departement;
 	
-	@OneToMany
+	@OneToMany (mappedBy = "ville")
 	private Collection<Compte> comptes;
 
 	public Ville() {
 		comptes = new ArrayList<>();
 	}
+	
+	public Ville(String nom) {
+		this();
+		this.nom = nom;
+	}
 
 	public Ville(String nom, Departement departement) {
+		this();
 		this.nom = nom;
 		this.departement = departement;
 	}
+	
+	
 
+	public Long getId() {
+		return id;
+	}
+
+	
 	public String getNom() {
 		return nom;
 	}
@@ -51,4 +67,19 @@ public class Ville {
 	public void setDepartement(Departement departement) {
 		this.departement = departement;
 	}
+	
+	public Collection<Compte> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(Collection<Compte> comptes) {
+		this.comptes = comptes;
+	}
+
+	@Override
+	public String toString() {
+		return "Ville [id=" + id + ", nom=" + nom + ", departement=" + departement + "]";
+	}
+	
+	
 }

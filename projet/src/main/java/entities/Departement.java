@@ -1,10 +1,18 @@
 package entities;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.*;
 
 @Entity
-public class Departement {
+public class Departement implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	private Long id;
 	
@@ -23,11 +31,20 @@ public class Departement {
 	@Column( length = 120, nullable = false)
 	private String nom_soundex;
 	
+	@OneToMany (mappedBy = "departement")
+	private Collection<Ville> villes;
+	
 	@ManyToOne
 	private Pays pays;
 
 	public Departement() {
+		villes = new ArrayList<>();
 	}
+	
+	public Departement(Long id) {
+		this.id = id;
+	}
+	
 
 	public Departement(String code, String nom, String nom_uppercase, String slug, String nom_soundex, Pays pays) {
 		this.code = code;
@@ -104,6 +121,15 @@ public class Departement {
 
 	public void setPays(Pays pays) {
 		this.pays = pays;
+	}
+	
+
+	public Collection<Ville> getVilles() {
+		return villes;
+	}
+
+	public void setVilles(Collection<Ville> villes) {
+		this.villes = villes;
 	}
 
 	@Override

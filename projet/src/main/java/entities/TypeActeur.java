@@ -1,5 +1,6 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -7,8 +8,13 @@ import javax.persistence.*;
 
 
 @Entity
-public class TypeActeur {
+public class TypeActeur implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -19,14 +25,25 @@ public class TypeActeur {
 	@Column(unique = true, length = 100, nullable = false)
 	private String description;
 	
-	@OneToMany //(mappedBy = "typeActeur")
+	@OneToMany (mappedBy = "typeActeur")
 	private Collection<Compte> comptes;
 
 	public TypeActeur() {
 		comptes = new ArrayList<>();
 	}
+	
+	
+
+	public TypeActeur(String nom, String description) {
+		this();
+		this.nom = nom;
+		this.description = description;
+	}
+
+
 
 	public TypeActeur(Long id, String nom, String description, Collection<Compte> comptes) {
+		this();
 		this.id = id;
 		this.nom = nom;
 		this.description = description;

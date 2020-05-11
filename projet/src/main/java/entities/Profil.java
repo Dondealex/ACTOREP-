@@ -1,11 +1,17 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
 @Entity
-public class Profil {
+public class Profil implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

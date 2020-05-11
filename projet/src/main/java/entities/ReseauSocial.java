@@ -1,5 +1,7 @@
 package entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ReseauSocial {
-
+public class ReseauSocial implements Serializable {
+	
+	//PROPRIETES
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -19,7 +22,8 @@ public class ReseauSocial {
 	
 	@Column(unique = true, length = 200, nullable = true)
 	private String url;
-
+	
+	// ASSOCIATION
 	@ManyToOne
 	private Profil profil;
 	

@@ -50,6 +50,7 @@ CommandLineRunner myMain() {
 		Administrateur ad03 = amd.insertAdmin("nboumediene", "123456", "Boumediene", "Nawel", "A00003", new Date());
 		Administrateur ad04 = amd.insertAdmin("anaudin", "123456", "Naudin", "Alexandre", "A00004", new Date());
 	
+	
 
 		Statut st01 = std.insertStatut("A001", "Activer l'administrateur", "Administrateur");
 		Statut st02 = std.insertStatut("A002", "Désactiver l'administrateur", "Administrateur");

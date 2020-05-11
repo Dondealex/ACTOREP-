@@ -11,24 +11,27 @@ import org.springframework.transaction.annotation.Transactional;
 import entities.*;
 
 
-@Repository
+@Repository("typeActeurDao")
 @Transactional
-public class CentreDAOTypeActeur {
+public class TypeActeurDaoImpl implements TypeActeurDao {
 	
 	@Autowired
 	private EntityManager em;
 	
+	@Override
 	public TypeActeur insertTypeActeur(String nom, String description) {
 		TypeActeur ta = new TypeActeur(nom, description);
 		em.persist(ta);		
 		return ta;
 	}
 	
+	@Override
 	public TypeActeur selectTypeActeurById(Long id) {
 		TypeActeur ta = em.find(TypeActeur.class, id);
 		return ta;
 	}
 	
+	@Override
 	public List<TypeActeur> selectTypeActeur() {
 		String jpql = "select t from TypeActeur t ";
 		Query qr = em.createQuery(jpql);
@@ -36,12 +39,14 @@ public class CentreDAOTypeActeur {
 		return result; 
 	}
 	
+	@Override
 	public void updateTypeActeurById(Long id, String nom, String description) {
 		TypeActeur ta = em.find(TypeActeur.class, id);
 		ta.setNom(nom);
 		ta.setDescription(description);
 	}
 	
+	@Override
 	public void deleteTypeActeurById(Long id) {
 		TypeActeur ta = em.find(TypeActeur.class, id);
 		em.remove(ta);		

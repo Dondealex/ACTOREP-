@@ -39,9 +39,11 @@ public class Compte {
 	private String tel;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = true)
 	private Date dateNaiss;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = true)
 	private Date dateCrea;
 	
 	@Column(length = 75, nullable = true)
@@ -86,6 +88,41 @@ public class Compte {
 		this.profils = profils;
 	}
 
+	public Compte(String nom, String prenom, String email, String mdp, String rue,
+			String codePostal, String tel, Date dateNaiss, TypeActeur typeActeur,
+			Statut statut, Ville ville) {
+		this();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.mdp = mdp;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.tel = tel;
+		this.dateNaiss = dateNaiss;
+		this.typeActeur = typeActeur;
+		this.statut = statut;
+		this.ville = ville;
+	}
+	
+	public Compte(String nomOrganisation, String email, String mdp, String rue,
+			String codePostal, String tel, Date dateNaiss, String numSiret, TypeActeur typeActeur,
+			Statut statut, Ville ville) {
+		this();
+		this.nomOrganisation = nomOrganisation;
+		this.email = email;
+		this.mdp = mdp;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.tel = tel;
+		this.dateCrea = dateCrea;
+		this.numSiret = numSiret;
+		this.typeActeur = typeActeur;
+		this.statut = statut;
+		this.ville = ville;
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}

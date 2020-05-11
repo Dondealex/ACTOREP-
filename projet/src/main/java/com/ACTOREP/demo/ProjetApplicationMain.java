@@ -10,6 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import repository.DepartementRepository;
 
 import entities.Administrateur;
 import entities.ReseauSocial;
@@ -18,22 +21,23 @@ import repository.AdminDaoImpl;
 import repository.ResSocDaoImpl;
 import repository.StatutDaoImpl;
 
-
 @SpringBootApplication
-@ComponentScan (basePackages = {"repository", "controller", "metier", "session"})
-@EntityScan (basePackages = {"entities"})
+@ComponentScan(basePackages = {"repository","controller","metier","session"})
+@EntityScan(basePackages = {"entities"})
+@EnableJpaRepositories(basePackageClasses = DepartementRepository.class)
+
 public class ProjetApplicationMain {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetApplicationMain.class, args);
 	}
-	
+
 @Autowired
 AdminDaoImpl amd;
 
 @Autowired
 StatutDaoImpl std;
-
+	
 @Autowired
 ResSocDaoImpl rsd;
 	

@@ -84,7 +84,7 @@ public class TypeActeur implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TypeActeur [id=" + id + ", nom=" + nom + ", description=" + description + ", comptes=" + comptes + "]";
+		return "TypeActeur [id=" + id + ", nom=" + nom + ", description=" + description  + "]";
 	}
 
 	

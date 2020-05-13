@@ -47,6 +47,10 @@ public class Ville implements Serializable {
 	
 	
 
+	public Ville(Long id) {
+		this.id = id;
+	}
+
 	public Long getId() {
 		return id;
 	}

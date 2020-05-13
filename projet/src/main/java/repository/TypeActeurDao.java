@@ -6,9 +6,13 @@ import entities.TypeActeur;
 
 public interface TypeActeurDao {
 	public TypeActeur insertTypeActeur(String nom, String description);
+	
 	public TypeActeur selectTypeActeurById(Long id);
+	
 	public List<TypeActeur> selectTypeActeur();
-	public void updateTypeActeurById(Long id, String nom, String description);
+	
+	public TypeActeur updateTypeActeurById(Long id, String nom, String description);
+	
 	public void deleteTypeActeurById(Long id);
 
 }

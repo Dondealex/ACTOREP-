@@ -55,6 +55,25 @@ public class AdminServiceImpl implements AdminService {
 		return ad;
 	}
 
+	@Override
+	public Administrateur checkNum(String num) {
+		Boolean newNum;
+		return null;
+	}
+
+	@Override
+	public Administrateur selectAdmin(String idAdmin) {
+		Long id = Long.valueOf(idAdmin);
+		Administrateur ad = adminDao.selectAdminById(id);
+		return ad;
+	}
+
+	@Override
+	public Administrateur updateAdmin(Administrateur admin) {
+		Administrateur ad = adminDao.updateAdmin(admin);
+		return ad;
+	}
+
 	
 
 }

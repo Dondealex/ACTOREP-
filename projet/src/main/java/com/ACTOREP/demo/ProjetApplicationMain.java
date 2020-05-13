@@ -1,7 +1,6 @@
 package com.ACTOREP.demo;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.*;
@@ -61,13 +60,6 @@ DepartementMetierImpl deparMet;
 CommandLineRunner myMain() {
 	return args -> {
 		
-		System.out.println(" <<<<<<<<<<< dans le Main");
-	/*
-		Administrateur ad01 = amd.insertAdmin("dtan", "123456", "Tan", "Dany", "A00001", new Date());
-		Administrateur ad02 = amd.insertAdmin("ikakou", "123456", "Kakou", "Ingrid", "A00002", new Date());
-		Administrateur ad03 = amd.insertAdmin("nboumediene", "123456", "Boumediene", "Nawel", "A00003", new Date());
-		Administrateur ad04 = amd.insertAdmin("anaudin", "123456", "Naudin", "Alexandre", "A00004", new Date());
-		
 		Statut st01 = std.insertStatut("A001", "Activer l'administrateur", "Administrateur");
 		Statut st02 = std.insertStatut("A002", "Désactiver l'administrateur", "Administrateur");
 		Statut st03 = std.insertStatut("P001", "Activer le profil", "Profil");
@@ -77,6 +69,11 @@ CommandLineRunner myMain() {
 		Statut st07 = std.insertStatut("C001", "Activer le compte", "Compte");
 		Statut st08 = std.insertStatut("C002", "Désactiver le compte", "Compte");
 
+		Administrateur ad01 = amd.insertAdmin("dtan", "123456", "Tan", "Dany", "A00001", new Date(), st01);
+		Administrateur ad02 = amd.insertAdmin("ikakou", "123456", "Kakou", "Ingrid", "A00002", new Date(), st01);
+		Administrateur ad03 = amd.insertAdmin("nboumediene", "123456", "Boumediene", "Nawel", "A00003", new Date(), st01);
+		Administrateur ad04 = amd.insertAdmin("anaudin", "123456", "Naudin", "Alexandre", "A00004", new Date(), st01);
+		
 		ReseauSocial rs01 = rsd.insertReseauSoc("Youtube", "aaaaaaaa");
 		ReseauSocial rs02 = rsd.insertReseauSoc("LinkedIn", "bbbbbbbb");
 		
@@ -164,8 +161,6 @@ CommandLineRunner myMain() {
 		centreDAOService.AssServiceProfil(3l, 1l);
 		centreDAOService.AssServiceProfil(4l, 5l);
 		centreDAOService.AssServiceProfil(4l, 6l);
-		*/
-		System.out.println(" <<<<<<<<<<< FIN >>>>>>>>>>>>");
 
 		};
 	}

@@ -45,6 +45,7 @@ public class Administrateur implements Serializable {
 	private String numEmploye;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
 	private Date dateEntree;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -62,14 +63,18 @@ public class Administrateur implements Serializable {
 		profils = new ArrayList<>();
 	}
 
-	public Administrateur(String identifiant, String mdp, String nom, String prenom, String numEmploye,
-			Date dateEntree) {
+	public Administrateur(Long id, String identifiant, String mdp, String nom, String prenom, String numEmploye,
+			Date dateEntree, Date dateSortie, Statut statut) {
+		super();
+		this.id = id;
 		this.identifiant = identifiant;
 		this.mdp = mdp;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.numEmploye = numEmploye;
 		this.dateEntree = dateEntree;
+		this.dateSortie = dateSortie;
+		this.statut = statut;
 	}
 
 	public Administrateur(String identifiant, String mdp, String nom, String prenom, String numEmploye, Date dateEntree,

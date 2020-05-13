@@ -11,4 +11,8 @@ public interface AdminService {
 	public List<Administrateur> extractAllAdmin();
 	public Statut checkStatut(String idSt);
 	public Administrateur creerAdmin(Administrateur admin);
+	public Administrateur checkNum(String num);
+	public Administrateur selectAdmin(String idAdmin);
+	public Administrateur updateAdmin(Administrateur admin);
+	
 }

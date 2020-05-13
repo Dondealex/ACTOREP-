@@ -64,7 +64,27 @@ public class Administrateur {
 		this.dateEntree = dateEntree;
 	}
 
+	public Administrateur(String identifiant, String mdp, String nom, String prenom, String numEmploye, Date dateEntree,
+			Statut statut) {
+		super();
+		this.identifiant = identifiant;
+		this.mdp = mdp;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.numEmploye = numEmploye;
+		this.dateEntree = dateEntree;
+		this.statut = statut;
+	}
+
 	// GETTERS AND SETTERS
+	public Boolean getActif() {
+		if(statut == null) {
+			return false;
+		}
+		return "A001".equals(statut.getId());
+	}
+	
+	
 	public Statut getStatut() {
 		return statut;
 	}

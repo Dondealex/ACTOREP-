@@ -1,5 +1,8 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">Bonjour ${admin}</a>
+<div class="container-expand-sm bg-dark">
+<div class="row">
+<div class="col-sm-10">
+<nav class="navbar navbar-expand-sm navbar-dark">
+  <a class="navbar-brand" href="#">Bonjour ${sessionScope['scopedTarget.sessionAdmin'].lastLogIn.prenom}</a>
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="#">Profils à valider</a>
@@ -12,8 +15,8 @@
         Administrateur
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Gestion des droits</a>
-        <a class="dropdown-item" href="#">Nouvel administrateur</a>
+        <a class="dropdown-item" href="droitsAd">Gestion des droits</a>
+        <a class="dropdown-item" href="nvlAd">Nouvel administrateur</a>
       </div>
     </li>
    <li class="nav-item">
@@ -22,6 +25,11 @@
     <li class="nav-item">
       <a class="nav-link" href="#">Documents</a>
     </li>
-  </ul>
-  <button class="btn btn-primary" type="submit">Se déconnecter</button>
+  </ul> 
 </nav>
+</div>
+<div class="col-sm-2 text-center my-auto">
+<button class="btn btn-primary" type="submit">Se déconnecter</button>
+</div>
+</div>
+</div>

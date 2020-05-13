@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.Statut;
 
-@Repository
+@Repository("statutDao")
 @Transactional
 public class StatutDaoImpl implements StatutDao {
 

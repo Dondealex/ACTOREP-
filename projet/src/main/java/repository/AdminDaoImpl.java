@@ -99,6 +99,12 @@ public class AdminDaoImpl implements AdminDao {
 		return false;
 		}
 
+	@Override
+	public Administrateur creerAdmin(Administrateur admin) {
+		em.persist(admin);
+		return admin;
+	}
+
 	
 }
 	

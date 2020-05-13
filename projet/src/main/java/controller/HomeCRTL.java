@@ -1,8 +1,9 @@
 package controller;
 
+import org.hibernate.mapping.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import metier.*;
 @Controller
 public class HomeCRTL {
 	
@@ -36,6 +37,7 @@ public class HomeCRTL {
 		return "/jspQuiSommesNous";
 	}
 	
+	
 	@RequestMapping(value = {"/vers-jspCommentCaMarche"})
 	public String afficheCommentCaMarche() {
 		return "/jspCommentCaMarche";
@@ -55,5 +57,14 @@ public class HomeCRTL {
 	public String rechercher() {
 		return "/jspResultatR";
 	}
+	
+	@RequestMapping(value= {"/RechercherProfilaValider"})
+	public String afficheProfilaValider() {
+	findProfilByIdStatus("P003");
+		
+		return "/jspProfilaValider";
+	}
+
+
 
 }

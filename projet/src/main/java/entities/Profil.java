@@ -47,7 +47,7 @@ public class Profil implements Serializable{
 	@ManyToMany(mappedBy = "profils")
 	private Collection<Administrateur> admins;
 
-	@ManyToMany(mappedBy = "profils",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy = "profils")
 	private Collection<Service> services;
 
 	public Profil() {
@@ -56,26 +56,11 @@ public class Profil implements Serializable{
 		services= new ArrayList<>();
 	}
 
-	public Profil(String presentation, byte[] photoProfil, String offre, Date dateCreation,
-			Date dateModification, Date dateDesactivation) {
+	public Profil(String presentation, byte[] photoProfil, String offre, Compte compte) {
 		this();
 		this.presentation = presentation;
 		this.photoProfil = photoProfil;
 		this.offre = offre;
-		this.dateCreation = dateCreation;
-		this.dateModification = dateModification;
-		this.dateDesactivation = dateDesactivation;
-	}
-
-	public Profil(String presentation, byte[] photoProfil, String offre, Date dateCreation, Date dateModification,
-			Date dateDesactivation, Compte compte) {
-		this();
-		this.presentation = presentation;
-		this.photoProfil = photoProfil;
-		this.offre = offre;
-		this.dateCreation = dateCreation;
-		this.dateModification = dateModification;
-		this.dateDesactivation = dateDesactivation;
 		this.compte = compte;
 	}
 

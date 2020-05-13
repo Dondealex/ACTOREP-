@@ -15,9 +15,18 @@
 <body>
 <c:import url="menu.jsp"/>
 <br>
-<div class="container-expand-sm mx-3 bg-secondary">
-  <h3>Navbar With Dropdown</h3>
-  <p>This example adds a dropdown menu in the navbar.</p>
+<div class="container-expand-sm mx-3">
+  <h4>Fiche à remplir :</h4><br><br>
+      <form action="creerAd" method="POST">
+      <c:import url="ficheAdmin.jsp"/>
+      <br>
+      <div class="row">
+      <div class="col text-center">
+      <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </div>
+      </div>
+      <p class="text-warning text-center">${err}</p>
+      </form>
 </div>
 </body>
 </html>

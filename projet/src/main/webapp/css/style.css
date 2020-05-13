@@ -1,5 +1,10 @@
 @charset "ISO-8859-1";
 
+#error{
+	color: red;
+	text-align: center;
+}
+
 h1 {
 	text-align: center;
 }

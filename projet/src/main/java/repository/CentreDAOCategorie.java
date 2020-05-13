@@ -23,10 +23,9 @@ public class CentreDAOCategorie {
 		return c;
 	}
 	
-	public List<Categorie> selectCategorieById(String labelCategorie) {
-		String jpql ="select * from Categorie s where c.categories.label = :paramLabel";
+	public List<Categorie> selectAllCategories() {
+		String jpql ="select c from Categorie c";
 		TypedQuery<Categorie> qr = em.createQuery(jpql,Categorie.class);
-		qr.setParameter("paramLabel", labelCategorie);
 		List<Categorie> result = qr.getResultList();
 		return result;
 	}

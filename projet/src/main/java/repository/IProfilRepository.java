@@ -20,5 +20,7 @@ public interface IProfilRepository extends JpaRepository<Profil, Long> {
 	
 	@Query("select p from Profil p where p.statut.id = :x")
 	public List<Profil> findProfilByIdStatus(@Param("x")String id);
+	
+
 
 }

@@ -1,6 +1,10 @@
 package metier;
 
 import java.util.*;
+
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 import entities.*;
@@ -21,8 +25,7 @@ public class ProfilMetierImpl implements IProfilMetier {
 	private StatutDaoImpl statutRep;
 	
 	@Override
-	public Profil addProfil(String presentation, byte[] photoProfil, String offre, Date dateCreation,
-			Date dateModification, Date dateDesactivation, Compte compte) {
+	public Profil addProfil(String presentation, byte[] photoProfil, String offre,Compte compte) {
 		
 		Profil profil = new Profil();
 		Statut statut = statutRep.selectStatutById(stVlid);
@@ -37,21 +40,6 @@ public class ProfilMetierImpl implements IProfilMetier {
 		profilRep.save(profil);
 		
 		return profil;
-	}
-	
-	@Override
-	public void AddAdminToProfil(Profil profil, Administrateur admin) {
-		profil.getAdmins().add(admin);
-	}
-
-	@Override
-	public void AddServiceToProfil(Profil profil, entities.Service service) {
-		profil.getServices().add(service);
-	}
-
-	@Override
-	public void AddReseauToProfil(Profil profil, ReseauSocial reseau) {
-		profil.getReseaux().add(reseau);
 	}
 
 	@Override
@@ -76,6 +64,7 @@ public class ProfilMetierImpl implements IProfilMetier {
 		Statut statut = statutRep.selectStatutById(stDesact);
 		profil.setDateDesactivation(new Date());
 		profil.setStatut(statut);
+		profilRep.save(profil);
 	}
 
 	@Override
@@ -83,5 +72,7 @@ public class ProfilMetierImpl implements IProfilMetier {
 		List<Profil> profils = profilRep.findProfilByIdStatus(stVlid);
 		return profils;
 	}
+	
 
+	
 }

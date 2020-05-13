@@ -40,10 +40,11 @@ public class TypeActeurDaoImpl implements TypeActeurDao {
 	}
 	
 	@Override
-	public void updateTypeActeurById(Long id, String nom, String description) {
+	public TypeActeur updateTypeActeurById(Long id, String nom, String description) {
 		TypeActeur ta = em.find(TypeActeur.class, id);
 		ta.setNom(nom);
 		ta.setDescription(description);
+		return ta;
 	}
 	
 	@Override

@@ -1,11 +1,13 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,12 +54,12 @@ public class Administrateur implements Serializable {
 	@ManyToOne
 	private Statut statut;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Collection<Profil> profils;
 	
 	// CONSTRUCTORS
 	public Administrateur() {
-		
+		profils = new ArrayList<>();
 	}
 
 	public Administrateur(String identifiant, String mdp, String nom, String prenom, String numEmploye,
@@ -70,9 +72,36 @@ public class Administrateur implements Serializable {
 		this.dateEntree = dateEntree;
 	}
 
+	public Administrateur(String identifiant, String mdp, String nom, String prenom, String numEmploye, Date dateEntree,
+			Statut statut) {
+		super();
+		this.identifiant = identifiant;
+		this.mdp = mdp;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.numEmploye = numEmploye;
+		this.dateEntree = dateEntree;
+		this.statut = statut;
+	}
+
 	// GETTERS AND SETTERS
+	public Boolean getActif() {
+		if(statut == null) {
+			return false;
+		}
+		return "A001".equals(statut.getId());
+	}
+	
 	public Statut getStatut() {
 		return statut;
+	}
+
+	public Collection<Profil> getProfils() {
+		return profils;
+	}
+
+	public void setProfils(Collection<Profil> profils) {
+		this.profils = profils;
 	}
 
 	public void setStatut(Statut statut) {

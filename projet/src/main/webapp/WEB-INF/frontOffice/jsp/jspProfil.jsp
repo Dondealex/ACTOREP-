@@ -40,6 +40,6 @@
 <label class='offreprofil' type='textarea' name='offre' value='' ></label> <br>
 </div>
 
-
+<a href="vers-jspHome">Se deconnecter</a>
 </body>
 </html>

@@ -9,10 +9,13 @@
 <link rel="stylesheet" href="css/style.css" >
 </head>
 <body>
+	<p>${sessionScope['scopedTarget.imit01Session'].departTrouve}</p>
 	<h1>Trouvez votre professionnel</h1>
 	<form action="rechercher" method="post" id="f12">
-		<select>
-			
+		<select name="category">
+    		<c:forEach items="${listCategory}" var="category">
+        		<option value="${category.id}">${category.name}</option>
+    		</c:forEach>
 		</select>
 		<select>
 			
@@ -24,6 +27,8 @@
 	<section id="sect1">
 	
 	</section>
+	
+	
 	
 	<%@ include file = "jspFooter.jsp" %>
 </body>

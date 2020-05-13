@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Administrateur;
+import entities.Profil;
 
 @Repository("adminDao")
 @Transactional
@@ -21,6 +22,13 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Autowired
 	private EntityManager em;
+	
+	@Override
+	public void AssAdminProfil(Long idP, Long idA){
+		Administrateur admin = em.find(Administrateur.class, idA);
+		Profil profil = em.find(Profil.class, idP);
+		admin.getProfils().add(profil);
+	}
 	
 	public Administrateur insertAdmin(String idtf, String mdp, String nom, String prenom, String numEmp,
 	Date dateIn) {
@@ -98,6 +106,12 @@ public class AdminDaoImpl implements AdminDao {
 		}
 		return false;
 		}
+
+	@Override
+	public Administrateur creerAdmin(Administrateur admin) {
+		em.persist(admin);
+		return admin;
+	}
 
 	
 }

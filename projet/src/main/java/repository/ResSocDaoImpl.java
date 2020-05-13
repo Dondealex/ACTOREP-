@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Profil;
 import entities.ReseauSocial;
 
 @Repository
@@ -18,6 +19,14 @@ public class ResSocDaoImpl implements ResSocDao {
 	
 	@Autowired
 	private EntityManager em;
+	
+	@Override
+	public void AssReseauProfil(Long idP, Long idR) {
+		ReseauSocial reseau = em.find(ReseauSocial.class, idR);
+		Profil profil = em.find(Profil.class, idP);
+		reseau.setProfil(profil);
+		em.persist(reseau);
+	}
 	
 	public ReseauSocial insertReseauSoc(String nom, String url) {
 		ReseauSocial rs = new ReseauSocial(nom, url);

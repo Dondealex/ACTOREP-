@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
@@ -32,6 +33,19 @@ public class CompteDaoImpl implements CompteDao  {
 	@Autowired
 	private EntityManager em;
 
+	public Compte seConnecterCompte(String email, String mdp) {
+		String jpql = "select c from Compte c where c.email= :email and c.mdp= :mdp";
+		TypedQuery<Compte> qr = em.createQuery(jpql,Compte.class);
+		qr.setParameter("email", email);
+		qr.setParameter("mdp", mdp);
+		Compte compte;
+		try {
+			compte = qr.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+		return compte;
+	}
 	
 	@Override
 	public Compte insertCompteIndividu(String nom, String prenom, String email, String mdp, String rue,

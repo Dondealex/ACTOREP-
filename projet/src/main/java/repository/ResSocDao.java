@@ -9,5 +9,6 @@ public interface ResSocDao {
 	public ReseauSocial selectReseauSocById(Long idRS);
 	public List<ReseauSocial> selectReseauSocByProfilId(Long idProfil);
 	public ReseauSocial updateReseauSoc(ReseauSocial rss);
+	public void AssReseauProfil(Long idP, Long idR);
 	public Integer deleteReseauSocById(ReseauSocial rss);
 }

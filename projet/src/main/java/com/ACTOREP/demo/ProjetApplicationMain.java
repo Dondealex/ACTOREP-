@@ -2,17 +2,15 @@ package com.ACTOREP.demo;
 
 import java.util.Date;
 import java.util.List;
-import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
-import org.springframework.data.jpa.repository.JpaRepository;
 import entities.*;
+import metier.DepartementMetierImpl;
 import metier.ProfilMetierImpl;
 import repository.*;
 
@@ -53,7 +51,11 @@ CentreDAOActeur centreDAOActeur;
 @Autowired
 CentreDAOService centreDAOService;
 
+@Autowired
+ProfilMetierImpl profilMet;
 
+@Autowired
+DepartementMetierImpl deparMet;
 	
 @Bean
 CommandLineRunner myMain() {
@@ -128,13 +130,43 @@ CommandLineRunner myMain() {
 		Service s13 = centreDAOService.insertService("Développement application", "développer une nouvelle application", ac7); 
 		Service s14 = centreDAOService.insertService("Support débogage", "maintenance sur une application", ac7);
 		Service s15 = centreDAOService.insertService("Conseil site internet", "", ac8); 
-		Service s16 = centreDAOService.insertService("Conception site internet", "", ac8);*/
+		Service s16 = centreDAOService.insertService("Conception site internet", "", ac8);
 		
+		Compte com1 = compteDao.selectCompteById(1l);
+		Compte com2 = compteDao.selectCompteById(2l);
+		Compte com3 = compteDao.selectCompteById(3l);
+		Compte com4 = compteDao.selectCompteById(4l);
 		
-				
-						System.out.println(" <<<<<<<<<<< FIN >>>>>>>>>>>>");
-						
-			
+		Profil pro1= profilMet.addProfil("je me presente1", null, "j'offre1", com1);
+		Profil pro2= profilMet.addProfil("je me presente2", null, "j'offre2", com2);
+		Profil pro3= profilMet.addProfil("je me presente3", null, "j'offre3", com3);
+		Profil pro4= profilMet.addProfil("je me presente4", null, "j'offre4", com4);
+		
+		rsd.AssReseauProfil(1L, 1L);
+		rsd.AssReseauProfil(1L, 2L);
+		
+		amd.AssAdminProfil(1l, 1l);
+		amd.AssAdminProfil(1l, 2l);
+		amd.AssAdminProfil(2l, 1l);
+		amd.AssAdminProfil(2l, 3l);
+		amd.AssAdminProfil(4l, 4l);
+		amd.AssAdminProfil(3l, 2l);
+		amd.AssAdminProfil(3l, 3l);
+		amd.AssAdminProfil(1l, 4l);
+		
+		centreDAOService.AssServiceProfil(1l, 2l);
+		centreDAOService.AssServiceProfil(1l, 2l);
+		centreDAOService.AssServiceProfil(1l, 3l);
+		centreDAOService.AssServiceProfil(1l, 4l);
+		centreDAOService.AssServiceProfil(2l, 4l);
+		centreDAOService.AssServiceProfil(2l, 6l);
+		centreDAOService.AssServiceProfil(3l, 4l);
+		centreDAOService.AssServiceProfil(3l, 1l);
+		centreDAOService.AssServiceProfil(4l, 5l);
+		centreDAOService.AssServiceProfil(4l, 6l);
+		
+		System.out.println(" <<<<<<<<<<< FIN >>>>>>>>>>>>");
+
 		};
 	}
 	

@@ -12,6 +12,11 @@ import javax.persistence.ManyToOne;
 @Entity
 public class ReseauSocial implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//PROPRIETES
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

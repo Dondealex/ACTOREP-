@@ -61,7 +61,7 @@ CommandLineRunner myMain() {
 		
 		System.out.println(" <<<<<<<<<<< dans le Main");
 	
-		Administrateur ad01 = amd.insertAdmin("dtan", "123456", "Tan", "Dany", "A00001", new Date());
+		/*Administrateur ad01 = amd.insertAdmin("dtan", "123456", "Tan", "Dany", "A00001", new Date());
 		Administrateur ad02 = amd.insertAdmin("ikakou", "123456", "Kakou", "Ingrid", "A00002", new Date());
 		Administrateur ad03 = amd.insertAdmin("nboumediene", "123456", "Boumediene", "Nawel", "A00003", new Date());
 		Administrateur ad04 = amd.insertAdmin("anaudin", "123456", "Naudin", "Alexandre", "A00004", new Date());
@@ -90,10 +90,10 @@ CommandLineRunner myMain() {
 		
 		Date dt01 = new Date();
 		Date dt02 = new Date(1986, 11, 23);
-		compteDao.insertCompteIndividu("Pitt", "Brad", "brad.pitt@gmail.com", "bpitt", "12 rue joli", "75005", "333333", dt01, ta01, st01, v01);
-		compteDao.insertCompteIndividu("Kakou", "Alban", "kakou.alban@hotmail.com", "kalb", "70 rue du javelot", "75013", "5555", dt02, ta02, st02, v02);
-		compteDao.insertCompteOrganisation("MSF", "msf@orga.fr", "msf", "9 rue des medecins", "69001", "8888", dt02, "rsc555", ta02, st01, v01);
-		compteDao.insertCompteOrganisation("HJH", "HJH@hotmail.fr", "HJH", "13 rue pinedes", "75009", "22222", dt01, "sts999", ta01, st02, v02);
+		compteDao.insertCompteIndividu("Pitt", "Brad", "brad.pitt@gmail.com", "bpitt", "12 rue joli", "75005", "333333", dt01, ta01, st07, v01);
+		compteDao.insertCompteIndividu("Kakou", "Alban", "kakou.alban@hotmail.com", "kalb", "70 rue du javelot", "75013", "5555", dt02, ta02, st08, v02);
+		compteDao.insertCompteOrganisation("MSF", "msf@orga.fr", "msf", "9 rue des medecins", "69001", "8888", dt02, "rsc555", ta02, st07, v01);
+		compteDao.insertCompteOrganisation("HJH", "HJH@hotmail.fr", "HJH", "13 rue pinedes", "75009", "22222", dt01, "sts999", ta01, st08, v02);
 		
 		
 	
@@ -128,7 +128,9 @@ CommandLineRunner myMain() {
 		Service s13 = centreDAOService.insertService("Développement application", "développer une nouvelle application", ac7); 
 		Service s14 = centreDAOService.insertService("Support débogage", "maintenance sur une application", ac7);
 		Service s15 = centreDAOService.insertService("Conseil site internet", "", ac8); 
-		Service s16 = centreDAOService.insertService("Conception site internet", "", ac8);
+		Service s16 = centreDAOService.insertService("Conception site internet", "", ac8);*/
+		
+		
 				
 						System.out.println(" <<<<<<<<<<< FIN >>>>>>>>>>>>");
 						

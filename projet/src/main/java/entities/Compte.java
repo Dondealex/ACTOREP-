@@ -64,7 +64,7 @@ public class Compte implements Serializable {
 	@ManyToOne
 	private Ville ville;
 	
-	@OneToMany (mappedBy = "compte")
+	@OneToMany (mappedBy = "compte", fetch = FetchType.EAGER)
 	private Collection<Profil> profils;
 
 	public Compte() {
@@ -112,7 +112,7 @@ public class Compte implements Serializable {
 	}
 	
 	public Compte(String nomOrganisation, String email, String mdp, String rue,
-			String codePostal, String tel, Date dateNaiss, String numSiret, TypeActeur typeActeur,
+			String codePostal, String tel, Date dateCrea, String numSiret, TypeActeur typeActeur,
 			Statut statut, Ville ville) {
 		this();
 		this.nomOrganisation = nomOrganisation;
@@ -263,6 +263,11 @@ public class Compte implements Serializable {
 				+ ", email=" + email + ", MDP=" + mdp + ", Rue=" + rue + ", codePostal=" + codePostal + ", tel=" + tel
 				+ ", dateNaiss=" + dateNaiss + ", dateCrea=" + dateCrea + ", numSiret=" + numSiret + ", typeActeur="
 				+ typeActeur + ", statut=" + statut + ", ville=" + ville + ", profils=" + profils + "]";
+		
+		/*return "Compte [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", nomOrganisation=" + nomOrganisation
+				+ ", email=" + email + ", MDP=" + mdp + ", Rue=" + rue + ", codePostal=" + codePostal + ", tel=" + tel
+				+ ", dateNaiss=" + dateNaiss + ", dateCrea=" + dateCrea + ", numSiret=" + numSiret + ", typeActeur="
+				+ typeActeur + ", statut=" + statut + ", ville=" + ville + "]";*/
 	}
 	
 	

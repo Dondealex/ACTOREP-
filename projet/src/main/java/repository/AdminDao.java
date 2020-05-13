@@ -15,4 +15,5 @@ public interface AdminDao {
 	public Integer deleteAdminById(Long idAdmin);
 	public Administrateur verifyAdmin(String idtf, String mdp);
 	public Boolean findAdmin(String idtf, String mdp);
+	public Administrateur creerAdmin(Administrateur admin);
 }

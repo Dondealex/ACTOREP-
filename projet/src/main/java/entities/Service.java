@@ -26,7 +26,7 @@ public class Service implements Serializable {
 	@ManyToOne
 	private Acteur acteur;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Collection<Profil> profils;
 	
 	public Service() {
@@ -46,6 +46,30 @@ public class Service implements Serializable {
 		this.nom = nom;
 		this.description = description;
 		this.acteur = acteur;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Acteur getActeur() {
+		return acteur;
+	}
+
+	public void setActeur(Acteur acteur) {
+		this.acteur = acteur;
+	}
+
+	public Collection<Profil> getProfils() {
+		return profils;
+	}
+
+	public void setProfils(Collection<Profil> profils) {
+		this.profils = profils;
 	}
 
 	public String getNom() {

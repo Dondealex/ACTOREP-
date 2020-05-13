@@ -27,6 +27,7 @@
 			<br>
 			<input id="submit" type="submit" value="Se connecter">
 		</form>
+		<p id="error">${error1}</p>
 	</div>
 	<br>
 	<br>

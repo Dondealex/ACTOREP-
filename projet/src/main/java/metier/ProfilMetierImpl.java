@@ -64,6 +64,7 @@ public class ProfilMetierImpl implements IProfilMetier {
 		Statut statut = statutRep.selectStatutById(stDesact);
 		profil.setDateDesactivation(new Date());
 		profil.setStatut(statut);
+		profilRep.save(profil);
 	}
 
 	@Override

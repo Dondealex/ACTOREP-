@@ -5,7 +5,7 @@
   <a class="navbar-brand" href="#">Bonjour ${sessionScope['scopedTarget.sessionAdmin'].lastLogIn.prenom}</a>
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="#">Profils à valider</a>
+      <a class="nav-link" href="RechercherProfilaValider">Profils à valider</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Recherche profil</a>
@@ -25,6 +25,7 @@
     <li class="nav-item">
       <a class="nav-link" href="#">Documents</a>
     </li>
+
   </ul> 
 </nav>
 </div>
@@ -35,3 +36,4 @@
 </div>
 </div>
 </div>
+

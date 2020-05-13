@@ -15,7 +15,7 @@
 <body>
 <c:import url="menu.jsp"/>
 <br>
-<div class="container-expand-sm mx-3 bg-secondary">
+<div class="container-expand-sm mx-5">
   <h3>Navbar With Dropdown</h3>
   <p>This example adds a dropdown menu in the navbar.</p>
 </div>

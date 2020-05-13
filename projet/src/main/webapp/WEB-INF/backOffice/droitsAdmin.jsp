@@ -22,7 +22,10 @@
       		<h4>Liste des administrateurs</h4>
      	</div>
      	<div class="col-sm-2 text-center my-auto">
+     	<form action="majListAd" method="POST">
       		<button class="btn btn-primary" type="submit">Mettre à jour la liste</button>
+      		<p class="text-primary text-center">${msg}</p>
+      	</form>
      	</div>
       </div>
       <br>
@@ -41,7 +44,7 @@
     <tbody>
     <c:forEach items="${admins}" var="a">
     <tr>
-    <td><a href="ficheAd"/>${a.id}</a></td>
+    <td><a href="ficheAd?idA=${a.id}">${a.id}</a></td>
     <td>${a.identifiant}</td>
     <td>${a.nom}</td>
     <td>${a.prenom}</td>

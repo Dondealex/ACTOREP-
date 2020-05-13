@@ -53,10 +53,24 @@ public class AdminCTRL {
 			return "backOffice/connexion";	
 	}
 	
+	@RequestMapping(value = {"/deconnecter"})
+		public String seDeconnecter() {
+			return "backOffice/connexion";
+		}
+	
+	
 	@RequestMapping(value = {"/droitsAd"})
 	public String gererAdministrateur(Model model) {
 		List<Administrateur> admins = adminService.extractAllAdmin();
 		model.addAttribute("admins", admins);
+		return "backOffice/droitsAdmin";
+	}
+	
+	@RequestMapping(value = {"/majListAd"})
+	public String extraireListAdmin(Model model) {
+		List<Administrateur> admins = adminService.extractAllAdmin();
+		model.addAttribute("admins", admins);
+		model.addAttribute("msg", "La liste est à jour !");
 		return "backOffice/droitsAdmin";
 	}
 	
@@ -74,15 +88,22 @@ public class AdminCTRL {
 		String dateEnt = params.get("dateEnt");
 		String statut = params.get("optradio");
 		
+		model.addAttribute("prenomAd", prenom);
+		model.addAttribute("nomAd", nom);
+		model.addAttribute("mdpAd", mdp);
+		model.addAttribute("numAd", num);
+		
 		if(prenom.isEmpty() || nom.isEmpty() || mdp.isEmpty() || num.isEmpty() || dateEnt.isEmpty()) {
-			model.addAttribute("err", "Tous les champs sont obligatoires !");
+			model.addAttribute("err", "Merci de remplir tous les champs obligatoires !");
 			return "backOffice/nvlAdmin";
 		}
 		
 		if(num.length() != 6) {
-			model.addAttribute("errNum", "Le numéro d'employé est incorrect");
+			model.addAttribute("errNum", "Le numéro employé est composé de 6 caracteres !");
 			return "backOffice/nvlAdmin";
 		}
+		
+		//Boolean newNum = 
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		sdf.setLenient(false);
@@ -97,7 +118,7 @@ public class AdminCTRL {
 				System.out.println(e.getMessage());
 			}
 			Administrateur ad = new Administrateur(idtf, mdp, nom, prenom, num, d, st);
-			adminService.creerAdmin(ad);
+			ad = adminService.creerAdmin(ad);
 			model.addAttribute("idAd", ad.getId());
 			model.addAttribute("prenomAd", ad.getPrenom());
 			model.addAttribute("nomAd", ad.getNom());
@@ -105,11 +126,12 @@ public class AdminCTRL {
 			model.addAttribute("mdpAd", ad.getMdp());
 			model.addAttribute("numAd", ad.getNumEmploye());
 			Date dtEnt = ad.getDateEntree();			
-			SimpleDateFormat sdf02 = new SimpleDateFormat("dd-MM-yyyy");
+			SimpleDateFormat sdf02 = new SimpleDateFormat("yyyy-MM-dd");
 			sdf02.setLenient(false);
 			
 			model.addAttribute("dateEnt", sdf02.format(dtEnt));
 			System.out.println(sdf02.format(dtEnt));
+			model.addAttribute("actif",ad.getActif());
 	
 		}
 		
@@ -120,12 +142,29 @@ public class AdminCTRL {
 		
 		List<Administrateur> admins = adminService.extractAllAdmin();
 		model.addAttribute("admins", admins);
-		
 		return "backOffice/nvlAdmin";
 	}
 	
+	@RequestMapping(value = {"ficheAd"})
+	public String afficherFicheAdmin(@RequestParam HashMap<String, String> params, Model model) {
+		String idAdmin = params.get("idA");
+		Administrateur ad = adminService.selectAdmin(idAdmin);
+		model.addAttribute("idAd", ad.getId());
+		model.addAttribute("prenomAd", ad.getPrenom());
+		model.addAttribute("nomAd", ad.getNom());
+		model.addAttribute("idtf", ad.getIdentifiant());
+		model.addAttribute("mdpAd", ad.getMdp());
+		model.addAttribute("numAd", ad.getNumEmploye());
+		Date dtEnt = ad.getDateEntree();			
+		SimpleDateFormat sdf02 = new SimpleDateFormat("yyyy-MM-dd");
+		sdf02.setLenient(false);	
+		model.addAttribute("dateEnt", sdf02.format(dtEnt));
+		System.out.println(sdf02.format(dtEnt));
+		model.addAttribute("actif",ad.getActif());
+		
+		return "backOffice/ficheAdmin";
+	}
 	
-//	@RequestMapping(value = {"/gestionDroits"})
-//	public String 
+
 
 }

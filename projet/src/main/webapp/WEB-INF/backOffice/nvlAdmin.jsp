@@ -16,9 +16,9 @@
 <c:import url="menu.jsp"/>
 <br>
 <div class="container-expand-sm mx-3">
-  <h4>Fiche à remplir :</h4><br><br>
+  <h4>Fiche de création d'un nouvel administrateur</h4><br><br>
       <form action="creerAd" method="POST">
-      <c:import url="ficheAdmin.jsp"/>
+      <c:import url="zCorpsAd.jsp"/>
       <br>
       <div class="row">
       <div class="col text-center">

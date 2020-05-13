@@ -29,7 +29,9 @@
 </nav>
 </div>
 <div class="col-sm-2 text-center my-auto">
+<form action="deconnecter" method="POST">
 <button class="btn btn-primary" type="submit">Se déconnecter</button>
+</form>
 </div>
 </div>
 </div>

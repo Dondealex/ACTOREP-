@@ -1,5 +1,6 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -7,8 +8,12 @@ import javax.persistence.*;
 
 
 @Entity
-public class Acteur {
+public class Acteur implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	@Column()
@@ -31,10 +36,21 @@ public class Acteur {
 
 	
 public Acteur(String nom, String description) {
+	this();
 	this.nom = nom;
 	this.description=description;
 	
 }
+
+
+
+public Acteur(String nom, String description, Categorie categorie) {
+	this();
+	this.nom = nom;
+	this.description = description;
+	this.categorie = categorie;
+}
+
 
 public String getNom() {
 	return nom;

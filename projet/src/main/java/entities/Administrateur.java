@@ -1,10 +1,13 @@
 package entities;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,8 +17,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Administrateur {
+public class Administrateur implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//PROPRIETES
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,12 +54,12 @@ public class Administrateur {
 	@ManyToOne
 	private Statut statut;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Collection<Profil> profils;
 	
 	// CONSTRUCTORS
 	public Administrateur() {
-		
+		profils = new ArrayList<>();
 	}
 
 	public Administrateur(String identifiant, String mdp, String nom, String prenom, String numEmploye,
@@ -84,9 +92,16 @@ public class Administrateur {
 		return "A001".equals(statut.getId());
 	}
 	
-	
 	public Statut getStatut() {
 		return statut;
+	}
+
+	public Collection<Profil> getProfils() {
+		return profils;
+	}
+
+	public void setProfils(Collection<Profil> profils) {
+		this.profils = profils;
 	}
 
 	public void setStatut(Statut statut) {

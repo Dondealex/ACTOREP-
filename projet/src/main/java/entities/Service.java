@@ -1,41 +1,77 @@
 package entities;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
-public class Service {
+public class Service implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	
-	
-	@Column()
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(length = 75, nullable = false)
 	private String nom;
 	
-	@Column( length = 200,nullable =false)
+	@Column( length = 200, nullable = false)
 	private String description;
 	
 	@ManyToOne
 	private Acteur acteur;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Collection<Profil> profils;
 	
+	public Service() {
+		profils = new ArrayList<>();
+	}
 	
 	public Service(String nom, String description) {
+		this();
 		this.nom = nom;
 		this.description=description;
 		
 	}
 	
-	public Service() {
-		
-	}
 	
+	public Service(String nom, String description, Acteur acteur) {
+		this();
+		this.nom = nom;
+		this.description = description;
+		this.acteur = acteur;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Acteur getActeur() {
+		return acteur;
+	}
+
+	public void setActeur(Acteur acteur) {
+		this.acteur = acteur;
+	}
+
+	public Collection<Profil> getProfils() {
+		return profils;
+	}
+
+	public void setProfils(Collection<Profil> profils) {
+		this.profils = profils;
+	}
+
 	public String getNom() {
 		return nom;
 	}

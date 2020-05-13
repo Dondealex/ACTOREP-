@@ -1,5 +1,6 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -7,8 +8,13 @@ import javax.persistence.*;
 
 
 @Entity
-public class TypeActeur {
+public class TypeActeur implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -78,7 +84,7 @@ public class TypeActeur {
 
 	@Override
 	public String toString() {
-		return "TypeActeur [id=" + id + ", nom=" + nom + ", description=" + description + ", comptes=" + comptes + "]";
+		return "TypeActeur [id=" + id + ", nom=" + nom + ", description=" + description  + "]";
 	}
 
 	

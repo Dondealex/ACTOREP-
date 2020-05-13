@@ -1,16 +1,26 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
 
 @Entity
-
-public class Ville {
+public class Ville implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	@Id
-	@Column(name = "Nom",length = 256)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	
+	@Column(length = 256, nullable = false)
 	private String nom;
 
 
@@ -34,7 +44,18 @@ public class Ville {
 		this.nom = nom;
 		this.departement = departement;
 	}
+	
+	
 
+	public Ville(Long id) {
+		this.id = id;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	
 	public String getNom() {
 		return nom;
 	}
@@ -58,4 +79,11 @@ public class Ville {
 	public void setComptes(Collection<Compte> comptes) {
 		this.comptes = comptes;
 	}
+
+	@Override
+	public String toString() {
+		return "Ville [id=" + id + ", nom=" + nom + ", departement=" + departement + "]";
+	}
+	
+	
 }

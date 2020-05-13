@@ -1,11 +1,17 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
 @Entity
-public class Profil {
+public class Profil implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -35,7 +41,6 @@ public class Profil {
 	@ManyToOne
 	private Statut statut;
 	
-
 	@OneToMany(mappedBy = "profil")
 	private Collection<ReseauSocial> reseaux;
 	
@@ -51,42 +56,12 @@ public class Profil {
 		services= new ArrayList<>();
 	}
 
-	public Profil(String presentation, byte[] photoProfil, String offre, Date dateCreation,
-			Date dateModification, Date dateDesactivation) {
+	public Profil(String presentation, byte[] photoProfil, String offre, Compte compte) {
 		this();
 		this.presentation = presentation;
 		this.photoProfil = photoProfil;
 		this.offre = offre;
-		this.dateCreation = dateCreation;
-		this.dateModification = dateModification;
-		this.dateDesactivation = dateDesactivation;
-	}
-
-	public Profil(String presentation, String offre, Date dateCreation, Date dateModification, Date dateDesactivation) {
-		this();
-		this.presentation = presentation;
-		this.offre = offre;
-		this.dateCreation = dateCreation;
-		this.dateModification = dateModification;
-		this.dateDesactivation = dateDesactivation;
-	}
-
-
-	public Profil(String presentation, byte[] photoProfil, String offre, Date dateCreation, Date dateModification,
-			Date dateDesactivation, Compte compte, Statut statut, Collection<ReseauSocial> reseaux,
-			Collection<Administrateur> admins, Collection<Service> services) {
-		this();
-		this.presentation = presentation;
-		this.photoProfil = photoProfil;
-		this.offre = offre;
-		this.dateCreation = dateCreation;
-		this.dateModification = dateModification;
-		this.dateDesactivation = dateDesactivation;
 		this.compte = compte;
-		this.statut = statut;
-		this.reseaux = reseaux;
-		this.admins = admins;
-		this.services = services;
 	}
 
 	public Compte getCompte() {

@@ -2,8 +2,8 @@ package controller;
 
 
 import org.hibernate.mapping.List;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -17,6 +17,7 @@ import entities.Acteur;
 import entities.Categorie;
 import entities.Compte;
 import entities.Departement;
+import entities.Profil;
 import metier.DepartementMetierImpl;
 import metier.ProfilMetierImpl;
 import repository.CentreDAOActeur;
@@ -49,10 +50,10 @@ public class HomeCRTL {
 	CentreDAOActeur centreDAOActeur;
 
 	public void init() {
-		List<Categorie> categories = centreDAOCategorie.selectAllCategories();
+		java.util.List<Categorie> categories = centreDAOCategorie.selectAllCategories();
 		session01.setCategories(categories);
 		
-		List<Acteur> acteurs = centreDAOActeur.selectAllActeurs();
+		java.util.List<Acteur> acteurs = centreDAOActeur.selectAllActeurs();
 		session01.setActeurs(acteurs);
 	}
 
@@ -121,16 +122,16 @@ public class HomeCRTL {
 	
 	
 
-	@RequestMapping(value= "/rechercher")
+	@RequestMapping(value= "/recherche")
 	public String rechercher() {
 		return "backOffice/jspResultatR";
 	}
 	
 	@RequestMapping(value= {"/RechercherProfilaValider"})
-	public String afficheProfilaValider() {
-	findProfilByIdStatus("P003");
-		
-		return "backOffice/jspProfilaValider";
+	public String afficheProfilaValider(Model model) {
+	java.util.List<Profil> listp = profilMet.findProfilAValider();
+		 model.addAttribute("listp", listp);
+		return "backOffice/Accueil";
 	}
 
 	}

@@ -15,7 +15,8 @@
 <jsp:include page="menu.jsp"/>
 <br>
 <div class="container-expand-sm mx-3 bg-secondary">
-<a href="vers_jspProfilaValider	"></a>
+<p>${listp}</p>
+
   
 
 </div>

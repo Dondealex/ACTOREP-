@@ -5,7 +5,7 @@
   <a class="navbar-brand" href="#">Bonjour ${sessionScope['scopedTarget.sessionAdmin'].lastLogIn.prenom}</a>
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="#">Profils à valider</a>
+      <a class="nav-link" href="#">Profils Å• valider</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Recherche profil</a>
@@ -25,11 +25,13 @@
     <li class="nav-item">
       <a class="nav-link" href="#">Documents</a>
     </li>
+
   </ul> 
 </nav>
 </div>
 <div class="col-sm-2 text-center my-auto">
-<button class="btn btn-primary" type="submit">Se déconnecter</button>
+<button class="btn btn-primary" type="submit">Se dÃ©connecter</button>
 </div>
 </div>
 </div>
+

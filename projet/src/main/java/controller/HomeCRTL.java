@@ -1,12 +1,16 @@
 package controller;
 
+
+import org.hibernate.mapping.List;
 import java.util.HashMap;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import metier.*;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import entities.Acteur;
@@ -104,6 +108,7 @@ public class HomeCRTL {
 		return "frontOffice/jsp/jspQuiSommesNous";
 	}
 	
+	
 	@RequestMapping(value = {"/vers-jspCommentCaMarche"})
 	public String afficheCommentCaMarche() {
 		return "frontOffice/jsp/jspCommentCaMarche";
@@ -114,10 +119,21 @@ public class HomeCRTL {
 		return "frontOffice/jsp/jspProfil";
 	}
 	
+	
 
-		
+	@RequestMapping(value= "/rechercher")
+	public String rechercher() {
+		return "backOffice/jspResultatR";
 	}
 	
+	@RequestMapping(value= {"/RechercherProfilaValider"})
+	public String afficheProfilaValider() {
+	findProfilByIdStatus("P003");
+		
+		return "backOffice/jspProfilaValider";
+	}
+
+	}
 
 
 

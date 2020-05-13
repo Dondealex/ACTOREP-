@@ -14,7 +14,7 @@
 <body>
 <jsp:include page="menu.jsp"/>
 <br>
-<div class="container-expand-sm mx-3 bg-secondary">
+<div class="container-expand-sm mx-5">
 <p>${listp}</p>
 
   

@@ -16,8 +16,8 @@
 <c:import url="menu.jsp"/>
 <br>
 <div class="container-expand-sm mx-5">
-  <h3>Navbar With Dropdown</h3>
-  <p>This example adds a dropdown menu in the navbar.</p>
+  <h5>Bienvenue sur votre site de gestion !</h5>
+
 </div>
 </body>
 </html>

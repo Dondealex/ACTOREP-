@@ -16,7 +16,7 @@
 <body>
 <c:import url="menu.jsp"/>
 <br>
-<div class="container-expand-sm mx-3">
+<div class="container-expand-sm mx-5">
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">

@@ -15,7 +15,7 @@
 <body>
 <c:import url="menu.jsp"/>
 <br>
-<div class="container-expand-sm mx-3">
+<div class="container-expand-sm mx-5">
   <h4>Fiche administrateur</h4><br><br>
   <c:import url = "zCorpsAd.jsp"/><br>
   <form action="update" method="POST">

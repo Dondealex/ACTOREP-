@@ -16,7 +16,7 @@
 <body>
 <c:import url="menu.jsp"/>
 <br>
-<div class="container-expand-sm mx-3">
+<div class="container-expand-sm mx-5">
   <div class="row">
 		<div class="col-sm-10">
       		<h4>Liste des administrateurs</h4>

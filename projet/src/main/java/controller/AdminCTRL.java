@@ -160,8 +160,7 @@ public class AdminCTRL {
 		sdf02.setLenient(false);	
 		model.addAttribute("dateEnt", sdf02.format(dtEnt));
 		System.out.println(sdf02.format(dtEnt));
-		model.addAttribute("actif",ad.getActif());
-		
+		model.addAttribute("actif",ad.getActif());		
 		return "backOffice/ficheAdmin";
 	}
 	

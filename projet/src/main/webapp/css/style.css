@@ -1,5 +1,16 @@
 @charset "ISO-8859-1";
 
+#inputDept{
+	width:250px;
+}
+
+#body {
+color:black;
+background-color:white;
+background-image:url(image/image_de_fond.jpg);
+background-repeat:no-repeat;
+}
+
 #error{
 	color: red;
 	text-align: center;

@@ -31,7 +31,7 @@
 
 		<select name ="acteurs">
     		<c:forEach items="${sessionScope['scopedTarget.imit01Session'].acteurs}" var="a">
-    			<input type="hidden" value="${a.id}"/>
+
         		<option selected="true" value="${a.nom}">${a.nom}</option>
     		</c:forEach>
 		</select>

@@ -72,6 +72,17 @@ public class ProfilMetierImpl implements IProfilMetier {
 		List<Profil> profils = profilRep.findProfilByIdStatus(stVlid);
 		return profils;
 	}
+
+	@Override
+	public Profil findProfilByIdCompte(Long idCompte) {
+		Profil p = profilRep.findProfilByIdCompte(idCompte);
+		return p;
+	}
+	
+	public List<entities.Service> findServiceByIdProfil(Long idProfil) {
+		List<entities.Service> listeS = profilRep.findServicesByProfil(idProfil);
+		return listeS;
+	}
 	
 
 	

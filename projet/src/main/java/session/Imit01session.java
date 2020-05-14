@@ -16,6 +16,7 @@ public class Imit01session {
 	private Compte compteC;
 	private List<Categorie> categories;
 	private List<Acteur> acteurs;
+	private Profil profil;
 	
 	
 	public List<Acteur> getActeurs() {
@@ -49,6 +50,16 @@ public class Imit01session {
 	public void setDepartTrouve(Departement departTrouve) {
 		this.departTrouve = departTrouve;
 	}
+
+	public Profil getProfil() {
+		return profil;
+	}
+
+	public void setProfil(Profil profil) {
+		this.profil = profil;
+	}
+	
+	
 	
 	
 }

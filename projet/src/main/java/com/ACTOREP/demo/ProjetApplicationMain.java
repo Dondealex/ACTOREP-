@@ -60,7 +60,7 @@ DepartementMetierImpl deparMet;
 CommandLineRunner myMain() {
 	return args -> {
 		
-		Statut st01 = std.insertStatut("A001", "Activer l'administrateur", "Administrateur");
+		/*Statut st01 = std.insertStatut("A001", "Activer l'administrateur", "Administrateur");
 		Statut st02 = std.insertStatut("A002", "Désactiver l'administrateur", "Administrateur");
 		Statut st03 = std.insertStatut("P001", "Activer le profil", "Profil");
 		Statut st04 = std.insertStatut("P002", "Désactiver le profil", "Profil");
@@ -151,7 +151,7 @@ CommandLineRunner myMain() {
 		amd.AssAdminProfil(3l, 3l);
 		amd.AssAdminProfil(1l, 4l);
 		
-		centreDAOService.AssServiceProfil(1l, 2l);
+		centreDAOService.AssServiceProfil(1l, 1l);
 		centreDAOService.AssServiceProfil(1l, 2l);
 		centreDAOService.AssServiceProfil(1l, 3l);
 		centreDAOService.AssServiceProfil(1l, 4l);
@@ -161,7 +161,7 @@ CommandLineRunner myMain() {
 		centreDAOService.AssServiceProfil(3l, 1l);
 		centreDAOService.AssServiceProfil(4l, 5l);
 		centreDAOService.AssServiceProfil(4l, 6l);
-
+	*/
 		};
 	}
 	

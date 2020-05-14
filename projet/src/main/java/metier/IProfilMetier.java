@@ -16,5 +16,7 @@ public interface IProfilMetier {
 	public void desactiverProfil(Profil profil);
 	
 	public List<Profil> findProfilAValider();
+	
+	public Profil findProfilByIdCompte(Long idCompte);
 
 }

@@ -18,6 +18,7 @@ import entities.Categorie;
 import entities.Compte;
 import entities.Departement;
 import entities.Profil;
+import entities.Service;
 import metier.DepartementMetierImpl;
 import metier.ProfilMetierImpl;
 import repository.CentreDAOActeur;
@@ -77,6 +78,21 @@ public class HomeCRTL {
 		Compte compte = compteImpl.seConnecterCompte(email, mdp);
 		if(compte!=null) {
 			session01.setCompteC(compte);
+			model.addAttribute("nom", compte.getNom());
+			model.addAttribute("prenom", compte.getPrenom());
+			model.addAttribute("tel", compte.getTel());
+			model.addAttribute("mail", compte.getEmail());
+			model.addAttribute("ville", compte.getVille().getNom());
+			
+			Profil profil = profilMet.findProfilByIdCompte(compte.getId());
+			session01.setProfil(profil);
+			model.addAttribute("pres", profil.getPresentation());
+			model.addAttribute("offre", profil.getOffre());
+			
+			java.util.List<Service> list = profilMet.findServiceByIdProfil(profil.getId());
+			model.addAttribute("services",list);
+			
+			
 			return "frontOffice/jsp/jspProfil";
 		}else {
 			model.addAttribute("error1","Email/mot de passe incorrect");
@@ -114,12 +130,7 @@ public class HomeCRTL {
 	public String afficheCommentCaMarche() {
 		return "frontOffice/jsp/jspCommentCaMarche";
 	}
-	
-	@RequestMapping(value = {"/vers-jspProfil"})
-	public String afficheProfil() {
-		return "frontOffice/jsp/jspProfil";
-	}
-	
+
 	
 
 	@RequestMapping(value= "/recherche")

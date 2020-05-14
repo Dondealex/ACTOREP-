@@ -11,10 +11,12 @@
 
 <h1>PROFIL PAGE</h1>
 
- <input type="button" value="Modifier" />
+<a href="vers-jspHome">Se déconnecter</a>
+ 
 
 <div >
-<p id='nomprenom'>NOM  PRENOM</p>
+<p id='nom'>${nom} </p>
+<p id='prenom'> ${prenom} </p>
 </div>
 
 <div>
@@ -22,24 +24,25 @@
 </div>
 
 <div id='infos'>
-<p id='acteur'>Acteur</p>
-<p id='tel'>Telephone</p>
-<p id='email'>email</p>
-<p id='ville'>Ville</p>
+<p id='acteur'>${acteur}</p>
+<p id='tel'>Téléphone : ${tel}</p>
+<p id='email'>Email : ${mail}</p>
+<p id='ville'> Ville : ${ville}</p>
 </div>
 
 <div id='presprofil'>
-<label class='presprofil'></label> <br>
+<label class='presprofil'>${pres}</label> <br>
 </div>
 
 <div id='serviceprofil'>
-<label class='serviceprofil' type='textarea' name='serv' value='' ></label> <br>
+
+<label class='serviceprofil'>${services}</label> <br>
 </div>
 
 <div id='offreprofil'>
-<label class='offreprofil' type='textarea' name='offre' value='' ></label> <br>
+<label class='offreprofil' >${offre}</label> <br>
 </div>
 
-<a href="vers-jspHome">Se deconnecter</a>
+<input type="button" value="Modifier" />
 </body>
 </html>

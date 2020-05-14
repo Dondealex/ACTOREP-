@@ -159,8 +159,78 @@ ul li a:active, focus{
 	margin-right: 25px;
 }
 
+
+h1.titreprofil
+{
+	position: absolute;
+	left: 50px;
+	top: 10px;
+}
+
+.nomprofil
+{
+	font-size: 70px;
+	color: teal;
+	text-shadow: 5px 5px 2px black;
+
+	
+}
+
+.acteurprofil
+{
+	font-size: 40px;
+	color: blue;
+	text-shadow: 2px 2px 2px blue;
+}
 .photoprofil
 {
 	max-width: 200px;
 	 width: 30%;
+	 float: left;
+	 margin-right: 20px;
+}
+
+.connexionprofil
+{
+	position: absolute;
+	right: 50px;
+	top: 10px;
+}
+
+.presprofil
+{
+	position: relative;
+	left: 400px;
+	bottom: 50px;
+}
+
+.presprofillabel
+{
+	border: 1px solid teal;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.offreprofil
+{
+	position: relative;
+	left:500px;
+	bottom: 20px;
+}
+
+.offreprofillabel
+{
+	border: 1px solid teal;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.infosprofil
+{
+	
+}
+
+.boutonmodif
+{
+	
 }

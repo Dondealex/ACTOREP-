@@ -19,6 +19,7 @@ import entities.Categorie;
 import entities.Compte;
 import entities.Departement;
 import entities.Profil;
+import entities.Service;
 import metier.DepartementMetierImpl;
 import metier.ProfilMetierImpl;
 import repository.CentreDAOActeur;
@@ -79,6 +80,23 @@ public class HomeCRTL {
 		Compte compte = compteImpl.seConnecterCompte(email, mdp);
 		if(compte!=null) {
 			session01.setCompteC(compte);
+			model.addAttribute("nom", compte.getNom());
+			model.addAttribute("prenom", compte.getPrenom());
+			model.addAttribute("tel", compte.getTel());
+			model.addAttribute("mail", compte.getEmail());
+			model.addAttribute("ville", compte.getVille().getNom());
+			
+			Profil profil = profilMet.findProfilByIdCompte(compte.getId());
+			session01.setProfil(profil);
+			model.addAttribute("pres", profil.getPresentation());
+			model.addAttribute("offre", profil.getOffre());
+			model.addAttribute("photop", profil.getPhotoProfil());
+			
+			java.util.List<Service> list = profilMet.findServiceByIdProfil(profil.getId());
+				model.addAttribute("services", list);
+			
+			model.addAttribute("acteur", list.get(0).getActeur().getNom());
+			
 			return "frontOffice/jsp/jspProfil";
 		}else {
 			model.addAttribute("error1","Email/mot de passe incorrect");
@@ -92,7 +110,29 @@ public class HomeCRTL {
 	}
 	
 	@RequestMapping(value = {"/vers-jspInscription"})
-	public String afficheInscription() {
+	public String afficheInscription(@RequestParam HashMap<String, String> params, Model model) {
+		
+		String nom = params.get("nom");
+		String prenom = params.get("prenom");
+		String raison = params.get("raison");
+		String rue = params.get("rue");
+		String cp = params.get("cp");
+		
+		String tel = params.get("num");
+		String datenais = params.get("datenais");
+		String datecrea = params.get("datecrea");
+		String mail = params.get("mail");
+		String mdp = params.get("mdp");
+		
+		java.util.List<Categorie> listC = centreDAOCategorie.selectAllCategories();
+		model.addAttribute("categories", listC);
+		
+		java.util.List<Departement> listD = deparMet.findDepartementByPays("France");
+		model.addAttribute("depts", listD);
+		
+		java.util.List<Acteur> listA = centreDAOActeur.selectAllActeurs();
+		model.addAttribute("acts", listA);
+		
 		return "frontOffice/jsp/jspInscription";
 	}
 	
@@ -116,12 +156,7 @@ public class HomeCRTL {
 	public String afficheCommentCaMarche() {
 		return "frontOffice/jsp/jspCommentCaMarche";
 	}
-	
-	@RequestMapping(value = {"/vers-jspProfil"})
-	public String afficheProfil() {
-		return "frontOffice/jsp/jspProfil";
-	}
-	
+
 	
 
 	@RequestMapping(value= "/recherche")

@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Fiche inscription</title>
 <link rel="stylesheet" href="css/style.css" >
+<script type="text/javascript" src='js/style.js'></script>
+
 <%@ include file = "jspHeader.jsp" %>
 </head>
 	<body>
@@ -13,29 +17,42 @@
 	
 	
 		<section>
-			<form action='controllerIngrid' method='post' >
+			<form action='HomeCTRL' method='post' >
 			<p id='fiche'>
-				<input type='radio' name='TypeActeur' value='Organisation' id='orga'/> <label> Organisation </label> 
-				<input type='radio' name='TypeActeur' value='Individu' id='indiv'/> <label> Individu </label> <br>
+				<input type="button" value="Organisation" onclick="myFunctionOrga()"/>
+				<input type="button" value="Individu" onclick="myFunctionInd()"/><br>
 				
-				<label> Nom </label> <input type='text' name='nom' value='' /> <br>
-				<label> Prénom </label> <input type='text' name='prenom' value=''/> <br>
-				<label> Raison sociale </label> <input type='text' name='raison' value='' /> <br>
-				<label> Rue </label> <input type='text' name='rue' value='' /> <br>
-				<label> Code Postal </label> <input type='text' name='cp' value='' /> <br>
-				<label> Département </label> <select name="departement" id="dept"> 
-				<option> France <option/> <option> Espagne <option/>
+				
+				<input id='nom'type='text' name='nom' value='' placeholder='Nom'/> <br>
+				<input id='prenom' type='text' name='prenom' value='' placeholder='Prénom'/> <br>
+				<input id='raison' type='text' name='raison' value='' placeholder='Raison sociale'/> <br>
+				<label>  </label> <input type='text' name='rue' value='' placeholder='Rue' /> <br>
+				<label>  </label> <input type='text' name='cp' value='' placeholder='Code Postal'/> <br>
+				<label> Département </label> 
+				<select name="departement" id="dept"> 
+				<c:forEach items="${depts}" var="d">
+				<option>${d.nom}<option/>
+    		</c:forEach></select>
 				</select> <br>
-				<label> Numéro de téléphone </label> <input type='text' name='num' value=''/> <br>
-				<label> Date de naissance </label> <input type='date' name='datenais' value='' /> <br>
-				<label> Date de création </label> <input type='date' name='datecrea' value='' /> <br>
-				<label> Email </label> <input type='email' name='mail' value='' /> <br>
-				<label> Mot de passe </label> <input type='password' name='mdp' value='' /> <br>
+				<input type='text' name='num' value='' placeholder='Numéro de téléphone'/> <br>
+				<input id='datenais' type='date' name='datenais' value=''/><label id='datenaislabel'> Date de naissance</label>  <br>
+				<input id='datecrea'type='date' name='datecrea' value=''/> <label id='datecrealabel'>Date de création</label><br>
+				<input type='email' name='mail' value='' placeholder='Email'/> <br>
+				<input type='password' name='mdp' value='' placeholder='Mot de passe' /> <br>
 			</p>
 			
 			<p id='service'>
-			<label> Toutes les catégories </label> <select name="categorie" id="cat"> </select>
-			<label> Acteurs </label> <select name="acteur" id="act"> </select>
+			<label> Toutes les catégories </label> 
+			<select name="categorie" id="cat" onChange="choix01()"> 
+			<c:forEach items="${categories}" var="c">
+				<option>${c.nom}<option/>
+    		</c:forEach></select>
+    		
+			<label> Acteurs </label> <select name="acteur" id="act">
+			<c:forEach items="${acts}" var="a">
+				<option>${a.nom}<option/>
+    		</c:forEach></select>
+    	
 			<input class='pres' type='textarea' name='presentation' placeholder='Présentez-vous' /> <br>
 			
 			</p>

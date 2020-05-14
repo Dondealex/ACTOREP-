@@ -74,6 +74,9 @@ CommandLineRunner myMain() {
 	return args -> {
 		
 
+		/*Statut st01 = std.insertStatut("A001", "Activer l'administrateur", "Administrateur");
+
+
 		/*System.out.println(" <<<<<<<<<<< dans le Main");
 	
 		Administrateur ad01 = amd.insertAdmin("dtan", "123456", "Tan", "Dany", "A00001", new Date());
@@ -155,7 +158,7 @@ CommandLineRunner myMain() {
 		Compte com3 = compteDao.selectCompteById(3l);
 		Compte com4 = compteDao.selectCompteById(4l);
 		
-		Profil pro1= profilMet.addProfil("je me presente1", null, "j'offre1", com1);
+		Profil pro1= profilMet.addProfil("je me presente1", "image/Brad-Pitt.jpg", "j'offre1", com1);
 		Profil pro2= profilMet.addProfil("je me presente2", null, "j'offre2", com2);
 		Profil pro3= profilMet.addProfil("je me presente3", null, "j'offre3", com3);
 		Profil pro4= profilMet.addProfil("je me presente4", null, "j'offre4", com4);
@@ -172,7 +175,7 @@ CommandLineRunner myMain() {
 		amd.AssAdminProfil(3l, 3l);
 		amd.AssAdminProfil(1l, 4l);
 		
-		centreDAOService.AssServiceProfil(1l, 2l);
+		centreDAOService.AssServiceProfil(1l, 1l);
 		centreDAOService.AssServiceProfil(1l, 2l);
 		centreDAOService.AssServiceProfil(1l, 3l);
 		centreDAOService.AssServiceProfil(1l, 4l);
@@ -183,8 +186,9 @@ CommandLineRunner myMain() {
 		centreDAOService.AssServiceProfil(4l, 5l);
 		centreDAOService.AssServiceProfil(4l, 6l);
 
+
 		
-		System.out.println(" <<<<<<<<<<< FIN >>>>>>>>>>>>");*/
+		System.out.println(" <<<<<<<<<<< FIN >>>>>>>>>>>>");
 		
 		String nomActeur = "Kinésithérapeute ";
 		String rqt="select s.profils from Service s where s.acteur.nom= :paramActeur";

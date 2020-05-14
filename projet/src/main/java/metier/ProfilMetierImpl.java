@@ -25,7 +25,7 @@ public class ProfilMetierImpl implements IProfilMetier {
 	private StatutDaoImpl statutRep;
 	
 	@Override
-	public Profil addProfil(String presentation, byte[] photoProfil, String offre,Compte compte) {
+	public Profil addProfil(String presentation, String photoProfil, String offre,Compte compte) {
 		
 		Profil profil = new Profil();
 		Statut statut = statutRep.selectStatutById(stVlid);
@@ -71,6 +71,17 @@ public class ProfilMetierImpl implements IProfilMetier {
 	public List<Profil> findProfilAValider() {
 		List<Profil> profils = profilRep.findProfilByIdStatus(stVlid);
 		return profils;
+	}
+
+	@Override
+	public Profil findProfilByIdCompte(Long idCompte) {
+		Profil p = profilRep.findProfilByIdCompte(idCompte);
+		return p;
+	}
+	
+	public List<entities.Service> findServiceByIdProfil(Long idProfil) {
+		List<entities.Service> listeS = profilRep.findServicesByProfil(idProfil);
+		return listeS;
 	}
 	
 	public List<Profil> findProfilHome(String search){

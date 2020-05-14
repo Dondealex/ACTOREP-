@@ -1,3 +1,5 @@
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,25 +10,33 @@
 <%@ include file = "jspHeader.jsp" %>
 <link rel="stylesheet" href="css/style.css" >
 </head>
-<body>
+<body id= "body">
 	<br>
 	<br>
 	<br>
 	<br>
 	<h1>Trouvez votre professionnel</h1>
 	<br>
+	
+	
+	
+	
 	<form action="rechercher" method="post" id="f1">
-		<select name="category">
-    		<c:forEach items="${sessionScope['scopedTarget.imit01Session'].categories}" var="categorie">
-        		<option value="${categorie.id}">${categorie.name}</option>
+
+		<select name="categories">
+    		<c:forEach var="c" items="${sessionScope['scopedTarget.imit01Session'].categories}"  >
+        		<option  value="${c.nom}">${c.nom}</option>
     		</c:forEach>
 		</select>
 
-		<select>
-			
+		<select name ="acteurs">
+    		<c:forEach items="${sessionScope['scopedTarget.imit01Session'].acteurs}" var="a">
+
+        		<option selected="true" value="${a.nom}">${a.nom}</option>
+    		</c:forEach>
 		</select>
 		
-		<input name = "dept" type= text placeholder= "Numéro/ Nom du département">
+		<input id="inputDept" name = "dept" type= text placeholder= "Numéro du département">
 		<br>
 		<input id="submit" type="submit" value="Rechercher">
 	</form>

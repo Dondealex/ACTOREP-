@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import metier.*;
@@ -49,30 +50,27 @@ public class HomeCRTL {
 	
 	@Autowired
 	CentreDAOActeur centreDAOActeur;
-
-	public void init() {
+	
+	@RequestMapping(value = {"/","/index"})
+	public String afficheAccueil(Model model) {
 		java.util.List<Categorie> categories = centreDAOCategorie.selectAllCategories();
 		session01.setCategories(categories);
 		
 		java.util.List<Acteur> acteurs = centreDAOActeur.selectAllActeurs();
 		session01.setActeurs(acteurs);
-	}
-
-	@RequestMapping(value = {"/","/index"})
-	public String afficheAccueil() {
+	
 		return "frontOffice/jsp/jspHome";
 	}
 	
 	@RequestMapping(value= "/rechercher")
 	public String rechercher(@RequestParam(value="dept") String dept, Model model) {
-		Departement depart = deparMet.findDepartementByCodeOrNom(dept);
-		model.addAttribute("dept", depart);
-		session01.setDepartTrouve(depart);
+		//profilMet.findProfilHome(search);
 		return "frontOffice/jsp/jspResultatR";
 	}
 	
 	@RequestMapping(value= "/seConnecter")
 	public String seConnecter(@RequestParam  HashMap<String, String> params, Model model) {
+		
 		String email = params.get("email");
 		String mdp = params.get("mdp");	
 		Compte compte = compteImpl.seConnecterCompte(email, mdp);

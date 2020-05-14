@@ -25,7 +25,7 @@
   <div class="col-2 text-right">
     </div>
     <div class="col-2 text-right">
-      <p>Identifiant *</p>
+      <p>Identifiant</p>
     </div>
     <div class="col-3">
       <input type="text" class="form-control" id="idtf" name="idtf" value="${idtf}" readonly>

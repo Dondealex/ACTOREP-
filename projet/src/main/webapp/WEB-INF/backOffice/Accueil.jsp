@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +16,27 @@
 <jsp:include page="menu.jsp"/>
 <br>
 <div class="container-expand-sm mx-5">
-<p>${listp}</p>
+      <table class="table">
+    <thead>
+      <tr>
+     
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Status</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${listp}" var="a">
+    <tr>
+		<td>${a.profil.compte.nom}</td>
+      	<td>${a.profil.compte.prenom}</td>
+		<td>${a.profil.compte.nomOrganisation }</td>
 
-  
-
-</div>
-</body>
+    </tr>
+     </c:forEach>
+      </tbody>
+      </table>
+      </div>
 </html>
+

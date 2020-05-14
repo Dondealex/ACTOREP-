@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,16 +10,18 @@
 <link rel="stylesheet" href="css/style.css" >
 </head>
 <body>
-	<p>${sessionScope['scopedTarget.imit01Session'].departTrouve}</p>
 	<h1>Trouvez votre professionnel</h1>
-	<form action="rechercher" method="post" id="f12">
-		<select name="category">
-    		<c:forEach items="${listCategory}" var="category">
-        		<option value="${category.id}">${category.name}</option>
+	<form action="rechercher2" method="post" id="f12">
+		<select name="categories">
+    		<c:forEach var="c" items="${sessionScope['scopedTarget.imit01Session'].categories}"  >
+        		<option  value="${c.nom}">${c.nom}</option>
     		</c:forEach>
 		</select>
-		<select>
-			
+		
+		<select name ="acteurs">
+			<c:forEach items="${sessionScope['scopedTarget.imit01Session'].acteurs}" var="a">
+        		<option value="">${a.nom}</option>
+    		</c:forEach>
 		</select>
 		<input type= text placeholder= "Numéro/ Nom du département">
 		<input id="submit2" type="submit" value="Rechercher">

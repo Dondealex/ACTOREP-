@@ -73,6 +73,10 @@ public class ProfilMetierImpl implements IProfilMetier {
 		return profils;
 	}
 	
-
+	public List<Profil> findProfilHome(String search){
+		List<Profil> profils = profilRep.findProfilHome(search);
+		return profils;
+		
+	}
 	
 }

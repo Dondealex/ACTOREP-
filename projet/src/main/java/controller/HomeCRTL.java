@@ -63,7 +63,11 @@ public class HomeCRTL {
 	
 	@RequestMapping(value= "/rechercher")
 	public String rechercher(@RequestParam(value="dept") String dept, Model model) {
-		//profilMet.findProfilHome(search);
+		
+		java.util.List<Profil> profils = profilMet.findProfilHome("Kinésithérapeute");
+		model.addAttribute("profils", profils);
+
+		
 		return "frontOffice/jsp/jspResultatR";
 	}
 	

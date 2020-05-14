@@ -1,5 +1,11 @@
 @charset "ISO-8859-1";
 
+#sect1{
+float: left;
+width: 150px;
+border: 1px solid black;
+}
+
 #inputDept{
 	width:250px;
 }

@@ -191,9 +191,6 @@ CommandLineRunner myMain() {
 		Query qr = em.createQuery(rqt);
 		qr.setParameter("paramActeur", nomActeur);
 		List<Profil> profils = qr.getResultList();
-		for(Profil p : profils) {
-			System.out.println(p);
-		}
 		
 		/*String nomDepart="Paris";
 		String rqts="select c.profils from Compte c join c.ville v join c.ville.departement d where d.nom = :nomDepart";

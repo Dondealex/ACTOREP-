@@ -20,7 +20,7 @@
 		
 		<select name ="acteurs">
 			<c:forEach items="${sessionScope['scopedTarget.imit01Session'].acteurs}" var="a">
-        		<option value="">${a.nom}</option>
+        		<option value="${a.nom}">${a.nom}</option>
     		</c:forEach>
 		</select>
 		<input type= text placeholder= "Numéro/ Nom du département">
@@ -28,10 +28,25 @@
 	</form>
 	<br>
 	<section id="sect1">
-	
+		
 	</section>
-	
-	
+	<section id="profils">
+		<c:set var="i" value="1" />
+		 <c:forEach items="${profils}" var="u">
+            <tr>
+	            <form id = 'showProfil' action="#" >
+	                <fieldset>
+	                    <input type="hidden" id = "profilId" value="${u.id}"/></<br>
+	                    <td><strong>Profil ${i} :</strong></td></br>
+	                    <td> ${u.presentation}   </br> ${u.offre} <td/>
+	                    </br>
+	                </fieldset>
+	            </form>
+        	</tr>
+        	<c:set var="i" value="${i+1}" />
+        </c:forEach>
+        
+	</section>
 	
 	<%@ include file = "jspFooter.jsp" %>
 </body>

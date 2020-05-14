@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,40 +11,47 @@
 </head>
 <body>
 
-<h1>PROFIL PAGE</h1>
+<h1 class='titreprofil'>VOTRE PROFIL</h1>
 
-<a href="vers-jspHome">Se déconnecter</a>
+<p class='connexionprofil'><a  href="vers-jspHome">Se déconnecter</a></p>
+
  
 
 <div >
-<p id='nom'>${nom} </p>
-<p id='prenom'> ${prenom} </p>
+<h1 class= 'nomprofil'>${nom} ${prenom} </h1>
+<h2 class ='acteurprofil'>${acteur}</h2>
+
 </div>
 
 <div>
-<input type="image" class="photoprofil" src="image/Brad-Pitt.jpg">
+<input type="image" class="photoprofil" src="${photop}">
 </div>
 
-<div id='infos'>
-<p id='acteur'>${acteur}</p>
+<div class='infosprofil' id='infos'>
+
 <p id='tel'>Téléphone : ${tel}</p>
 <p id='email'>Email : ${mail}</p>
 <p id='ville'> Ville : ${ville}</p>
 </div>
 
-<div id='presprofil'>
-<label class='presprofil'>${pres}</label> <br>
+<div class='presprofil'>
+<label class='presprofillabel'>${pres}</label> <br>
 </div>
 
 <div id='serviceprofil'>
 
-<label class='serviceprofil'>${services}</label> <br>
+ <c:forEach items="${services}" var="s">
+${s.nom} <br>
+    </c:forEach>
+
 </div>
 
-<div id='offreprofil'>
-<label class='offreprofil' >${offre}</label> <br>
+<div class='offreprofil'>
+<label class='offreprofillabel' >${offre}</label> <br>
 </div>
-
+<p class= 'boutonmodif'>
 <input type="button" value="Modifier" />
+</p>
+
 </body>
 </html>

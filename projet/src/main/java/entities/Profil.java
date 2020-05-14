@@ -19,8 +19,8 @@ public class Profil implements Serializable{
 	@Column( length = 612, nullable = false)
 	private String presentation;
 	
-	@Lob
-	private byte[] photoProfil;
+	@Column(nullable = true)
+	private String photoProfil;
 	
 	@Column( length = 612, nullable = false)
 	private String offre;
@@ -56,7 +56,7 @@ public class Profil implements Serializable{
 		services= new ArrayList<>();
 	}
 
-	public Profil(String presentation, byte[] photoProfil, String offre, Compte compte) {
+	public Profil(String presentation, String photoProfil, String offre, Compte compte) {
 		this();
 		this.presentation = presentation;
 		this.photoProfil = photoProfil;
@@ -120,11 +120,11 @@ public class Profil implements Serializable{
 		this.presentation = presentation;
 	}
 
-	public byte[] getPhotoProfil() {
+	public String getPhotoProfil() {
 		return photoProfil;
 	}
 
-	public void setPhotoProfil(byte[] photoProfil) {
+	public void setPhotoProfil(String photoProfil) {
 		this.photoProfil = photoProfil;
 	}
 

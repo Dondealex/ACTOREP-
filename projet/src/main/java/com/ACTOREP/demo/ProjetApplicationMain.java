@@ -158,7 +158,7 @@ CommandLineRunner myMain() {
 		Compte com3 = compteDao.selectCompteById(3l);
 		Compte com4 = compteDao.selectCompteById(4l);
 		
-		Profil pro1= profilMet.addProfil("je me presente1", null, "j'offre1", com1);
+		Profil pro1= profilMet.addProfil("je me presente1", "image/Brad-Pitt.jpg", "j'offre1", com1);
 		Profil pro2= profilMet.addProfil("je me presente2", null, "j'offre2", com2);
 		Profil pro3= profilMet.addProfil("je me presente3", null, "j'offre3", com3);
 		Profil pro4= profilMet.addProfil("je me presente4", null, "j'offre4", com4);

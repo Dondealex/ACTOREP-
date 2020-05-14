@@ -25,7 +25,7 @@ public class ProfilMetierImpl implements IProfilMetier {
 	private StatutDaoImpl statutRep;
 	
 	@Override
-	public Profil addProfil(String presentation, byte[] photoProfil, String offre,Compte compte) {
+	public Profil addProfil(String presentation, String photoProfil, String offre,Compte compte) {
 		
 		Profil profil = new Profil();
 		Statut statut = statutRep.selectStatutById(stVlid);

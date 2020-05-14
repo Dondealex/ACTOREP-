@@ -5,7 +5,7 @@ import entities.*;
 
 public interface IProfilMetier {
 	
-	public Profil addProfil(String presentation, byte[] photoProfil, String offre,  Compte compte);
+	public Profil addProfil(String presentation, String photoProfil, String offre,  Compte compte);
 	
 	public Profil FindProfilById(Long id);
 	

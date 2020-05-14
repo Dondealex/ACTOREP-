@@ -86,10 +86,12 @@ public class HomeCRTL {
 			session01.setProfil(profil);
 			model.addAttribute("pres", profil.getPresentation());
 			model.addAttribute("offre", profil.getOffre());
+			model.addAttribute("photop", profil.getPhotoProfil());
 			
 			java.util.List<Service> list = profilMet.findServiceByIdProfil(profil.getId());
-			model.addAttribute("services",list);
+				model.addAttribute("services", list);
 			
+			model.addAttribute("acteur", list.get(0).getActeur().getNom());
 			
 			return "frontOffice/jsp/jspProfil";
 		}else {
@@ -104,7 +106,29 @@ public class HomeCRTL {
 	}
 	
 	@RequestMapping(value = {"/vers-jspInscription"})
-	public String afficheInscription() {
+	public String afficheInscription(@RequestParam HashMap<String, String> params, Model model) {
+		
+		String nom = params.get("nom");
+		String prenom = params.get("prenom");
+		String raison = params.get("raison");
+		String rue = params.get("rue");
+		String cp = params.get("cp");
+		
+		String tel = params.get("num");
+		String datenais = params.get("datenais");
+		String datecrea = params.get("datecrea");
+		String mail = params.get("mail");
+		String mdp = params.get("mdp");
+		
+		java.util.List<Categorie> listC = centreDAOCategorie.selectAllCategories();
+		model.addAttribute("categories", listC);
+		
+		java.util.List<Departement> listD = deparMet.findDepartementByPays("France");
+		model.addAttribute("depts", listD);
+		
+		java.util.List<Acteur> listA = centreDAOActeur.selectAllActeurs();
+		model.addAttribute("acts", listA);
+		
 		return "frontOffice/jsp/jspInscription";
 	}
 	

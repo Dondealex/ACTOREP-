@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +12,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<c:import url="menu.jsp"/>
+<jsp:include page="menu.jsp"/>
 <br>
 <div class="container-expand-sm mx-5">
-  <h5>Bienvenue sur votre site de gestion !</h5>
+<p>${listp}</p>
+
+  
 
 </div>
 </body>

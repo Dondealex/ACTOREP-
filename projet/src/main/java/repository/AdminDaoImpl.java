@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.Administrateur;
 import entities.Profil;
+import entities.Statut;
 
 @Repository("adminDao")
 @Transactional
@@ -31,8 +32,8 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	
 	public Administrateur insertAdmin(String idtf, String mdp, String nom, String prenom, String numEmp,
-	Date dateIn) {
-		Administrateur admin = new Administrateur(idtf, mdp, nom, prenom, numEmp, dateIn);
+			Date dateIn, Statut st) {
+		Administrateur admin = new Administrateur(idtf, mdp, nom, prenom, numEmp, dateIn, st);
 		em.persist(admin);
 		return admin;
 	}
@@ -58,6 +59,7 @@ public class AdminDaoImpl implements AdminDao {
 		a.setNumEmploye(ad.getNumEmploye());
 		a.setDateEntree(ad.getDateEntree());
 		a.setDateSortie(ad.getDateSortie());
+		a.setStatut(ad.getStatut());
 		return a;
 	}
 	
@@ -106,6 +108,21 @@ public class AdminDaoImpl implements AdminDao {
 		}
 		return false;
 		}
+
+	@Override
+	public Administrateur creerAdmin(Administrateur admin) {
+		em.persist(admin);
+		return admin;
+	}
+
+	@Override
+	public Administrateur checkNum(String num) {
+		String jpql = "select a from Administrateur a where a.numEmploye = :paramNum";
+		Query qr = em.createQuery(jpql, Administrateur.class);
+		qr.setParameter("paramNum", num);
+		
+		return null;
+	}
 
 	
 }

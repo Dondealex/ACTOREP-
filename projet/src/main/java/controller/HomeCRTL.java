@@ -1,19 +1,24 @@
 package controller;
 
-import java.util.HashMap;
-import java.util.List;
+
+import org.hibernate.mapping.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import metier.*;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import entities.Acteur;
 import entities.Categorie;
 import entities.Compte;
 import entities.Departement;
+import entities.Profil;
 import metier.DepartementMetierImpl;
 import metier.ProfilMetierImpl;
 import repository.CentreDAOActeur;
@@ -47,21 +52,19 @@ public class HomeCRTL {
 	
 	@RequestMapping(value = {"/","/index"})
 	public String afficheAccueil(Model model) {
-		
-		List<Categorie> categories = centreDAOCategorie.selectAllCategories();
+		java.util.List<Categorie> categories = centreDAOCategorie.selectAllCategories();
 		session01.setCategories(categories);
 		
-		List<Acteur> acteurs = centreDAOActeur.selectAllActeurs();
+		java.util.List<Acteur> acteurs = centreDAOActeur.selectAllActeurs();
 		session01.setActeurs(acteurs);
-		
-		return "/jspHome";
+	
+		return "frontOffice/jsp/jspHome";
 	}
 	
 	@RequestMapping(value= "/rechercher")
 	public String rechercher(@RequestParam(value="dept") String dept, Model model) {
-		
 		//profilMet.findProfilHome(search);
-		return "/jspResultatR";
+		return "frontOffice/jsp/jspResultatR";
 	}
 	
 	@RequestMapping(value= "/seConnecter")
@@ -72,52 +75,64 @@ public class HomeCRTL {
 		Compte compte = compteImpl.seConnecterCompte(email, mdp);
 		if(compte!=null) {
 			session01.setCompteC(compte);
-			return "/jspProfil";
+			return "frontOffice/jsp/jspProfil";
 		}else {
 			model.addAttribute("error1","Email/mot de passe incorrect");
-			return "/jspConnexion";
+			return "frontOffice/jsp/jspConnexion";
 		}
 	}
 	
 	@RequestMapping(value= "/vers-jspHome")
 	public String afficherHome() {
-		return "/jspHome";
+		return "frontOffice/jsp/jspHome";
 	}
 	
 	@RequestMapping(value = {"/vers-jspInscription"})
 	public String afficheInscription() {
-		return "/jspInscription";
+		return "frontOffice/jsp/jspInscription";
 	}
 	
 	@RequestMapping(value = {"/vers-jspConnexion"})
 	public String afficheConnexion() {
-		return "/jspConnexion";
+		return "frontOffice/jsp/jspConnexion";
 	}
 	
 	@RequestMapping(value = {"/vers-jspContact"})
 	public String afficheContact() {
-		return "/jspContact";
+		return "frontOffice/jsp/jspContact";
 	}
 	
 	@RequestMapping(value = {"/vers-jspQuiSommesNous"})
 	public String afficheQuiSommesNous() {
-		return "/jspQuiSommesNous";
+		return "frontOffice/jsp/jspQuiSommesNous";
 	}
+	
 	
 	@RequestMapping(value = {"/vers-jspCommentCaMarche"})
 	public String afficheCommentCaMarche() {
-		return "/jspCommentCaMarche";
+		return "frontOffice/jsp/jspCommentCaMarche";
 	}
 	
 	@RequestMapping(value = {"/vers-jspProfil"})
 	public String afficheProfil() {
-		return "/jspProfil";
+		return "frontOffice/jsp/jspProfil";
 	}
+	
 	
 
-		
+	@RequestMapping(value= "/recherche")
+	public String rechercher() {
+		return "backOffice/jspResultatR";
 	}
 	
+	@RequestMapping(value= {"/RechercherProfilaValider"})
+	public String afficheProfilaValider(Model model) {
+	java.util.List<Profil> listp = profilMet.findProfilAValider();
+		 model.addAttribute("listp", listp);
+		return "backOffice/Accueil";
+	}
+
+	}
 
 
 

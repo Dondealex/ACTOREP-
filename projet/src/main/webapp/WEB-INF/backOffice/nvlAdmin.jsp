@@ -16,8 +16,17 @@
 <c:import url="menu.jsp"/>
 <br>
 <div class="container-expand-sm mx-5">
-  <h5>Bienvenue sur votre site de gestion !</h5>
-
+  <h4>Fiche de création d'un nouvel administrateur</h4><br><br>
+      <form action="creerAd" method="POST">
+      <c:import url="zCorpsAd.jsp"/>
+      <br>
+      <div class="row">
+      <div class="col text-center">
+      <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </div>
+      </div>
+      <p class="text-warning text-center">${err}</p>
+      </form>
 </div>
 </body>
 </html>

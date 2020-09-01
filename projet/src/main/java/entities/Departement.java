@@ -16,19 +16,19 @@ public class Departement implements Serializable{
 	@Id
 	private Long id;
 	
-	@Column( length = 3, nullable = false)
+	@Column( length = 3)
 	private String code;
 	
-	@Column( length =255, nullable = false)
+	@Column( length =255)
 	private String nom;
 	
-	@Column( length = 255, nullable = false)
+	@Column( length = 255)
 	private String nom_uppercase;
 	
-	@Column( length = 255, nullable = false)
+	@Column( length = 255)
 	private String slug;
 	
-	@Column( length = 120, nullable = false)
+	@Column( length = 120)
 	private String nom_soundex;
 	
 	@OneToMany (mappedBy = "departement")

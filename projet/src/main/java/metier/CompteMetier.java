@@ -3,6 +3,7 @@ package metier;
 import java.util.Date;
 import java.util.List;
 
+import entities.Acteur;
 import entities.Compte;
 import entities.Statut;
 import entities.TypeActeur;
@@ -29,16 +30,22 @@ public interface CompteMetier {
 	public List<Compte> affichageCompteActif();
 	
 	public Compte majCompteIndividuId(Long idCompte, String nom, String prenom, String email, String mdp,
-			String rue, String codePostal, String tel, Date dateNaiss, Ville ville);
+			String rue, String codePostal, String tel, Date dateNaiss, Ville ville,Acteur acteur);
 	
 	public Compte majCompteOrganisationId (Long idCompte, String nomOrganisation, String email, String mdp,
-			String rue, String codePostal, String tel, Date dateCrea, String numSiret, Ville ville);
+			String rue, String codePostal, String tel, Date dateCrea, String numSiret, Ville ville,Acteur acteur);
 	
 	public void activationCompteId(Long idCompte);
 	
 	public void inactivationCompteId(Long idCompte);
 	
 	public void suppressionCompteId(Long idCompte);
+
+	public Compte creationCompteIndividu(String nom, String prenom, String email, String mdp, String rue, String codePostal,
+			String tel, Date dateNaiss, TypeActeur typeActeur, Statut statut, Ville ville, Acteur acteur);
+
+	public Compte creationCompteOrganisation(String nomOrganisation, String email, String mdp, String rue, String codePostal,
+			String tel, Date dateCrea, String numSiret, TypeActeur typeActeur, Statut statut, Ville ville, Acteur acteur);
 	
 	
 

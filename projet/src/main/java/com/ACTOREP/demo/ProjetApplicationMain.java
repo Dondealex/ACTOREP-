@@ -10,17 +10,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.context.annotation.*;
+
 import entities.*;
-import metier.DepartementMetierImpl;
-import metier.ProfilMetierImpl;
+import metier.*;
 import repository.*;
 
-@SpringBootApplication
+import org.springframework.context.annotation.*;
+
+
+
 @ComponentScan(basePackages = {"repository","controller","metier","session"})
 @EntityScan(basePackages = {"entities"})
 @EnableJpaRepositories(basePackageClasses = {IDepartementRepository.class , IProfilRepository.class})
+@SpringBootApplication
+@EnableConfigurationProperties
 public class ProjetApplicationMain {
 
 	public static void main(String[] args) {
@@ -74,20 +80,20 @@ CommandLineRunner myMain() {
 	return args -> {
 		
 
-		/*Statut st01 = std.insertStatut("A001", "Activer l'administrateur", "Administrateur");
+//	Statut st01 = std.insertStatut("A001", "Activer l'administrateur", "Administrateur");
 
 
-		/*System.out.println(" <<<<<<<<<<< dans le Main");
+		System.out.println(" <<<<<<<<<<< dans le Main");
 	
-		Administrateur ad01 = amd.insertAdmin("dtan", "123456", "Tan", "Dany", "A00001", new Date());
-		Administrateur ad02 = amd.insertAdmin("ikakou", "123456", "Kakou", "Ingrid", "A00002", new Date());
-		Administrateur ad03 = amd.insertAdmin("nboumediene", "123456", "Boumediene", "Nawel", "A00003", new Date());
-		Administrateur ad04 = amd.insertAdmin("anaudin", "123456", "Naudin", "Alexandre", "A00004", new Date());
+//		Administrateur ad01 = amd.insertAdmin("dtan", "123456", "Tan", "Dany", "A00001", new Date());
+//		Administrateur ad02 = amd.insertAdmin("ikakou", "123456", "Kakou", "Ingrid", "A00002", new Date());
+//		Administrateur ad03 = amd.insertAdmin("nboumediene", "123456", "Boumediene", "Nawel", "A00003", new Date());
+//		Administrateur ad04 = amd.insertAdmin("anaudin", "123456", "Naudin", "Alexandre", "A00004", new Date());
 
-		Statut st01 = std.insertStatut("A001", "Activer l'administrateur", "Administrateur");
-		Statut st02 = std.insertStatut("A002", "Désactiver l'administrateur", "Administrateur");
-		Statut st03 = std.insertStatut("P001", "Activer le profil", "Profil");
-		Statut st04 = std.insertStatut("P002", "Désactiver le profil", "Profil");
+		Statut st01 = std.insertStatut("A001", "Actived admin", "Administrateur");
+		Statut st02 = std.insertStatut("A002", "Inactive admin", "Administrateur");
+		Statut st03 = std.insertStatut("P001", "actived Profil", "Profil");
+		Statut st04 = std.insertStatut("P002", "inactive profil", "Profil");
 		Statut st05 = std.insertStatut("P003", "Profil en cours de validation", "Profil");
 		Statut st06 = std.insertStatut("P004", "Profil bloqué par l'administrateur", "Profil");
 		Statut st07 = std.insertStatut("C001", "Activer le compte", "Compte");
@@ -98,7 +104,7 @@ CommandLineRunner myMain() {
 		Administrateur ad03 = amd.insertAdmin("nboumediene", "123456", "Boumediene", "Nawel", "A00003", new Date(), st01);
 		Administrateur ad04 = amd.insertAdmin("anaudin", "123456", "Naudin", "Alexandre", "A00004", new Date(), st01);
 		
-		ReseauSocial rs01 = rsd.insertReseauSoc("Youtube", "aaaaaaaa");
+		ReseauSocial rs01 = rsd.insertReseauSoc("Youtube", "https://www.youtube.com/embed/3p4MZJsexEs");
 		ReseauSocial rs02 = rsd.insertReseauSoc("LinkedIn", "bbbbbbbb");
 		
 		Departement dept01 = new Departement(75L);
@@ -111,21 +117,11 @@ CommandLineRunner myMain() {
 		TypeActeur ta01 = TypeActeurDao.insertTypeActeur("Personne", "personne réelle");
 		TypeActeur ta02 = TypeActeurDao.insertTypeActeur("Organise", "société");
 		
-		Date dt01 = new Date();
-		Date dt02 = new Date(1986, 11, 23);
-		compteDao.insertCompteIndividu("Pitt", "Brad", "brad.pitt@gmail.com", "bpitt", "12 rue joli", "75005", "333333", dt01, ta01, st07, v01);
-		compteDao.insertCompteIndividu("Kakou", "Alban", "kakou.alban@hotmail.com", "kalb", "70 rue du javelot", "75013", "5555", dt02, ta02, st08, v02);
-		compteDao.insertCompteOrganisation("MSF", "msf@orga.fr", "msf", "9 rue des medecins", "69001", "8888", dt02, "rsc555", ta02, st07, v01);
-		compteDao.insertCompteOrganisation("HJH", "HJH@hotmail.fr", "HJH", "13 rue pinedes", "75009", "22222", dt01, "sts999", ta01, st08, v02);
-		
-		
-	
 		Categorie ca1 = centreDAOCategorie.insertCategorie("Santé","Tout les professionnels de santé");
 		Categorie ca2 = centreDAOCategorie.insertCategorie("Sport","Tout les professionnels Sportif ");
 		Categorie ca3 = centreDAOCategorie.insertCategorie("Consulting","");
 		Categorie ca4 = centreDAOCategorie.insertCategorie("Informatique","");
 		
-
 		Acteur ac1 = centreDAOActeur.insertActeur( "Kinésithérapeute "," ", ca1);
 		Acteur ac2 = centreDAOActeur.insertActeur("Infirmier ", " ", ca1);
 		Acteur ac3 = centreDAOActeur.insertActeur("Coach Sportif "," ", ca2);
@@ -134,7 +130,14 @@ CommandLineRunner myMain() {
 		Acteur ac6 = centreDAOActeur.insertActeur("Marketing"," ", ca3);
 		Acteur ac7 = centreDAOActeur.insertActeur("Developpeur ","Java et Javascript ", ca4);
 		Acteur ac8 = centreDAOActeur.insertActeur("IUX Designer "," ", ca4);
-
+		
+		Date dt01 = new Date();
+		Date dt02 = new Date(1986, 11, 23);
+		compteDao.insertCompteIndividu("Pitt", "Brad", "brad.pitt@gmail.com", "bpitt", "12 rue joli", "75005", "333333", dt01, ta01, st07, v01,ac1);
+		compteDao.insertCompteIndividu("Kakou", "Alban", "kakou.alban@hotmail.com", "kalb", "70 rue du javelot", "75013", "5555", dt02, ta02, st08, v02,ac2);
+		compteDao.insertCompteOrganisation("MSF", "msf@orga.fr", "msf", "9 rue des medecins", "69001", "8888", dt02, "rsc555", ta02, st07, v01,ac3);
+		compteDao.insertCompteOrganisation("HJH", "HJH@hotmail.fr", "HJH", "13 rue pinedes", "75009", "22222", dt01, "sts999", ta01, st08, v02,ac4);
+		
 		
 		Service s1 = centreDAOService.insertService("Consultation", " ", ac1);
 		Service s2 = centreDAOService.insertService("Consultation à domicile", "", ac1);
@@ -186,24 +189,24 @@ CommandLineRunner myMain() {
 		centreDAOService.AssServiceProfil(4l, 5l);
 		centreDAOService.AssServiceProfil(4l, 6l);
 
-
-		
-		System.out.println(" <<<<<<<<<<< FIN >>>>>>>>>>>>");
-		
-		String nomActeur = "Kinésithérapeute ";
-		String rqt="select s.profils from Service s where s.acteur.nom= :paramActeur";
-		Query qr = em.createQuery(rqt);
-		qr.setParameter("paramActeur", nomActeur);
-		List<Profil> profils = qr.getResultList();
-		
+//
+//		
+//		System.out.println(" <<<<<<<<<<< FIN >>>>>>>>>>>>");
+//		
+//		String nomActeur = "Kinésithérapeute ";
+//		String rqt="select s.profils from Service s where s.acteur.nom= :paramActeur";
+//		Query qr = em.createQuery(rqt);
+//		qr.setParameter("paramActeur", nomActeur);
+//		List<Profil> profils = qr.getResultList();
+//		
 		/*String nomDepart="Paris";
 		String rqts="select c.profils from Compte c join c.ville v join c.ville.departement d where d.nom = :nomDepart";
 		Query qry = em.createQuery(rqts);
 		qry.setParameter("nomDepart", nomDepart);
 		List<Profil> profils1 = qry.getResultList();
 		for(Profil p : profils1) {
-			System.out.println("p = "+p);
-		}*/
+			System.out.println("p = "+p);*/
+		
 
 		};
 	}

@@ -1,30 +1,27 @@
 package controller;
 
 
-import org.hibernate.mapping.List;
+//import org.hibernate.mapping.List;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
-
+	
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import metier.*;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import entities.Acteur;
-import entities.Categorie;
-import entities.Compte;
-import entities.Departement;
-import entities.Profil;
-import entities.Service;
-import metier.DepartementMetierImpl;
-import metier.ProfilMetierImpl;
-import repository.CentreDAOActeur;
-import repository.CentreDAOCategorie;
-import repository.CompteDaoImpl;
+import entities.*;
+import repository.*;
 import session.Imit01session;
 
 @Controller
@@ -34,10 +31,16 @@ public class HomeCRTL {
 	}
 
 	@Autowired
+	ServiceRepository serviceRepository;
+	
+	@Autowired
 	CompteDaoImpl compteImpl;
 	
 	@Autowired
 	ProfilMetierImpl profilMet;
+	
+	@Autowired
+	ProfilDAO daoService ;
 	
 	@Autowired
 	DepartementMetierImpl deparMet;
@@ -50,6 +53,24 @@ public class HomeCRTL {
 	
 	@Autowired
 	CentreDAOActeur centreDAOActeur;
+	
+	@Autowired
+	CentreDAOService centreDAOService;
+	
+	@Autowired
+	StatutDaoImpl StatutDaoImpl;
+	
+	@Autowired
+	TypeActeurDaoImpl typeActeurDao;
+	
+	@Autowired
+	CompteMetierImpl compteMetierimpl;
+	
+	@Autowired
+	ProfilMetierImpl profilMetierImpl;
+	
+	@Autowired
+	ResSocDaoImpl resSocDaoImpl;
 	
 	@RequestMapping(value = {"/","/index"})
 	public String afficheAccueil(Model model) {
@@ -72,30 +93,31 @@ public class HomeCRTL {
 		return "frontOffice/jsp/jspResultatR";
 	}
 	
-	@RequestMapping(value= "/seConnecter")
+	@RequestMapping(value= "/sConnecter")
 	public String seConnecter(@RequestParam  HashMap<String, String> params, Model model) {
 		
 		String email = params.get("email");
 		String mdp = params.get("mdp");	
 		Compte compte = compteImpl.seConnecterCompte(email, mdp);
+		System.out.println(compte==null );
 		if(compte!=null) {
 			session01.setCompteC(compte);
 			model.addAttribute("nom", compte.getNom());
 			model.addAttribute("prenom", compte.getPrenom());
 			model.addAttribute("tel", compte.getTel());
 			model.addAttribute("mail", compte.getEmail());
-			model.addAttribute("ville", compte.getVille().getNom());
+			if(compte.getVille()!=null) model.addAttribute("ville", compte.getVille().getNom());
 			
-			Profil profil = profilMet.findProfilByIdCompte(compte.getId());
-			session01.setProfil(profil);
-			model.addAttribute("pres", profil.getPresentation());
-			model.addAttribute("offre", profil.getOffre());
-			model.addAttribute("photop", profil.getPhotoProfil());
-			
-			java.util.List<Service> list = profilMet.findServiceByIdProfil(profil.getId());
-				model.addAttribute("services", list);
-			
-			model.addAttribute("acteur", list.get(0).getActeur().getNom());
+//			Profil profil = profilMet.findProfilByIdCompte(compte.getId());
+//			session01.setProfil(profil);
+//			model.addAttribute("pres", profil.getPresentation());
+//			model.addAttribute("offre", profil.getOffre());
+//			model.addAttribute("photop", profil.getPhotoProfil());
+//			
+//			java.util.List<Service> list = profilMet.findServiceByIdProfil(profil.getId());
+//				model.addAttribute("services", list);
+//			
+//			model.addAttribute("acteur", list.get(0).getActeur().getNom());
 			
 			return "frontOffice/jsp/jspProfil";
 		}else {
@@ -110,29 +132,25 @@ public class HomeCRTL {
 	}
 	
 	@RequestMapping(value = {"/vers-jspInscription"})
-	public String afficheInscription(@RequestParam HashMap<String, String> params, Model model) {
+	public String afficheInscription(Model model) {
 		
-		String nom = params.get("nom");
-		String prenom = params.get("prenom");
-		String raison = params.get("raison");
-		String rue = params.get("rue");
-		String cp = params.get("cp");
 		
-		String tel = params.get("num");
-		String datenais = params.get("datenais");
-		String datecrea = params.get("datecrea");
-		String mail = params.get("mail");
-		String mdp = params.get("mdp");
 		
-		java.util.List<Categorie> listC = centreDAOCategorie.selectAllCategories();
+		
+		
+		List<Categorie> listC = centreDAOCategorie.selectAllCategories();
 		model.addAttribute("categories", listC);
 		
-		java.util.List<Departement> listD = deparMet.findDepartementByPays("France");
+		List<Departement> listD = deparMet.findDepartementByPays("France");
 		model.addAttribute("depts", listD);
 		
-		java.util.List<Acteur> listA = centreDAOActeur.selectAllActeurs();
-		model.addAttribute("acts", listA);
+		List<Acteur> listA = centreDAOActeur.selectAllActeurs();
+		model.addAttribute("acteurs", listA);
 		
+		List<Service> listS = centreDAOService.findAllServices();
+		model.addAttribute("serv", listS);
+
+	
 		return "frontOffice/jsp/jspInscription";
 	}
 	
@@ -157,21 +175,56 @@ public class HomeCRTL {
 		return "frontOffice/jsp/jspCommentCaMarche";
 	}
 
+	@RequestMapping(value = {"/services_acteur/{idActeur}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Service> getServicesByActors(@PathVariable Long idActeur) {
+		List<Service>  result = serviceRepository.findAllByIdActor(centreDAOActeur.getActeur(idActeur));
+		//List<Service>  result = serviceRepository.findAllByIdActor(idActeur);
+		System.out.print(result.size());
+		return  result;
+	}
+
+
+	
+	@RequestMapping(value= {"/registration"})
+	public String registration(@RequestParam  HashMap<String, String> params, Model model) throws ParseException {
+		System.out.print(params.get("acteur"));
+		if(params.get("raison") != "") {
+			System.out.print("Save  org ");
+		}
+		else {
+			
+			String nom = params.get("nom");
+			String prenom = params.get("prenom");
+			String raison = params.get("raison");
+			String rue = params.get("rue");
+			String cp = params.get("cp");
+			String tel = params.get("num");
+			String dateNaiss = params.get("datenais");
+			String email = params.get("mail");
+			String mdp = params.get("mdp");
+			Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateNaiss);
+//			Compte createAccount = compteMetierimpl.creationCompteIndividu(nom, prenom, email, mdp, rue, cp, tel, date,
+//					typeActeurDao.selectTypeActeurById((long) 2), StatutDaoImpl.selectStatutById("C001"), null);
+			
+			Compte createAccount = compteMetierimpl.creationCompteIndividu(nom, prenom, email, mdp, rue, cp, tel, date, typeActeurDao.selectTypeActeurById((long) 2),
+					StatutDaoImpl.selectStatutById("C001"), null, centreDAOActeur.getActeur(Long.parseLong(params.get("acteur"))));
+			
+			Profil pr = profilMetierImpl.addProfil(params.get("presentation"),null, null, createAccount);
+			ReseauSocial rsytb = resSocDaoImpl.insertReseauSoc("Youtube", params.get("youtube"),pr);
+			ReseauSocial rslink = resSocDaoImpl.insertReseauSoc("Link", params.get("youtube"),pr);
+			
+			
+
+			
+		}
+		
+		
+		return "frontOffice/jsp/jspConnexion";
+		
+	}
+	
+	
 	
 
-	@RequestMapping(value= "/recherche")
-	public String rechercher() {
-		return "backOffice/jspResultatR";
 	}
-	
-	@RequestMapping(value= {"/RechercherProfilaValider"})
-	public String afficheProfilaValider(Model model) {
-	java.util.List<Profil> listp = profilMet.findProfilAValider();
-		 model.addAttribute("listp", listp);
-		return "backOffice/Accueil";
-	}
-
-	}
-
-
-

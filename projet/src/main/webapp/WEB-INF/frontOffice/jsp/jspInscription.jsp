@@ -4,11 +4,10 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>Fiche inscription</title>
-<link rel="stylesheet" href="css/style.css" >
-<script type="text/javascript" src='js/style.js'></script>
 
 <%@ include file = "jspHeader.jsp" %>
 </head>
@@ -17,7 +16,7 @@
 	
 	
 		<section>
-			<form action='HomeCTRL' method='post' >
+			<form action='registration' method='post' >
 			<p id='fiche'>
 				<input type="button" value="Organisation" onclick="myFunctionOrga()"/>
 				<input type="button" value="Individu" onclick="myFunctionInd()"/><br>
@@ -33,44 +32,40 @@
 				<c:forEach items="${depts}" var="d">
 				<option>${d.nom}<option/>
     		</c:forEach></select>
-				</select> <br>
-				<input type='text' name='num' value='' placeholder='Numéro de téléphone'/> <br>
-				<input id='datenais' type='date' name='datenais' value=''/><label id='datenaislabel'> Date de naissance</label>  <br>
+    			<input id="department" class="form-control typeahead twitter-typeahead" type="text" placeholder="Start typing something to search..." 
+    			data-provide="typeahead">
+			<br>
+				<input type='text' name='num' value='' placeholder='Numéro de téléphone'/> <br><br>
+				<label> Date de naissance  <input id='datenais' type='date' name='datenais' value=''/><label id='datenaislabel'>   </label>  <br><br>
 				<input id='datecrea'type='date' name='datecrea' value=''/> <label id='datecrealabel'>Date de création</label><br>
-				<input type='email' name='mail' value='' placeholder='Email'/> <br>
+				
+				<input type='email' name='mail' value='' placeholder='Email'/> <br><br>
 				<input type='password' name='mdp' value='' placeholder='Mot de passe' /> <br>
 			</p>
 			
-			<p id='service'>
+		<p id='service'>
 			<label> Toutes les catégories </label> 
-			<select name="categorie" id="cat" onChange="choix01()"> 
+			<select name="categorie" id="cat" > 
 			<c:forEach items="${categories}" var="c">
 				<option>${c.nom}<option/>
     		</c:forEach></select>
     		
-			<label> Acteurs </label> <select name="acteur" id="act">
-			<c:forEach items="${acts}" var="a">
-				<option>${a.nom}<option/>
+			<label> Acteurs </label> <select name="acteur" id="act" onChange="choix01(this.value)">
+			<c:forEach items="${acteurs}" var="a">
+				<option id ="id_actor" value="${a.id}">${a.nom}<option/>
     		</c:forEach></select>
     	
-			<input class='pres' type='textarea' name='presentation' placeholder='Présentez-vous' /> <br>
+			    	  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Quels services proposez vous ?</label>
+    <textarea class="form-control" name='presentation' id="presentation" rows="3"></textarea>
+  </div>
+		
+			<p id='services'>
+				
 			
 			</p>
-			
-			<p id='presentation'>
-			<input class='listeser' type='textarea' name='listeservices' value=''/> <br>
-			
-			  <input type="button" value="Ajouter" />
-			  <input type="button" value="Supprimer" /><br>
-			 			 
-			<input class='listeserchoix' type='textarea' name='listeserviceschoix' value='' /> <br>
-			
-			</p>
-			
-			<p id='offre'>
-			<input class='offre' type='textarea' name='offre' value='' placeholder='Quelle est votre offre?' /> <br>
-			
-			</p>
+  			<label>Linkedin</label><input type='url' name='link' value='' placeholder='link'/> <br><br>
+			<label>Youtube</label>	<input type='url' name='youtube' value='' placeholder='youtube' /> <br>
 				
 				<input type= 'submit' name='inscrip' value='Inscription' />
 				

@@ -28,8 +28,8 @@ public class ResSocDaoImpl implements ResSocDao {
 		em.persist(reseau);
 	}
 	
-	public ReseauSocial insertReseauSoc(String nom, String url) {
-		ReseauSocial rs = new ReseauSocial(nom, url);
+	public ReseauSocial insertReseauSoc(String nom, String url,Profil profil) {
+		ReseauSocial rs = new ReseauSocial(nom, url,profil);
 		em.persist(rs);
 		return rs;
 	}
@@ -40,7 +40,7 @@ public class ResSocDaoImpl implements ResSocDao {
 	}
 	
 	public List<ReseauSocial> selectReseauSocByProfilId(Long idProfil){
-		String jpql = "select r from ReseauSocial r where a.profil.id = :paramId";
+		String jpql = "select r from ReseauSocial r where r.profil.id = :paramId";
 		TypedQuery<ReseauSocial> qr = em.createQuery(jpql, ReseauSocial.class);
 		qr.setParameter("paramId", idProfil);
 		List<ReseauSocial> result = qr.getResultList();
@@ -62,4 +62,12 @@ public class ResSocDaoImpl implements ResSocDao {
 		int deletedCount = qr.executeUpdate();
 		return deletedCount;
 		}
+
+	@Override
+	public ReseauSocial insertReseauSoc(String nom, String url) {
+		ReseauSocial rs = new ReseauSocial(nom, url);
+		em.persist(rs);
+		return rs;
+	
+	}
 }

@@ -11,6 +11,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<style type ="text/css">
+td.red{
+display: none;}
+td.activate{
+	
+}
+</style>
 </head>
 <body>
 <jsp:include page="menu.jsp"/>
@@ -22,17 +29,25 @@
      
         <th>Nom</th>
         <th>Prénom</th>
-        <th>Status</th>
-       
+        <th>Nom Organisation</th>
+        <th>Statut</th>
+        <th>Statut 2</th>
       </tr>
     </thead>
     <tbody>
     <c:forEach items="${listp}" var="a">
     <tr>
-		<td>${a.profil.compte.nom}</td>
-      	<td>${a.profil.compte.prenom}</td>
-		<td>${a.profil.compte.nomOrganisation }</td>
-
+		<td>${a.compte.nom}</td>
+      	<td>${a.compte.prenom}</td>      	
+		<td>${a.compte.nomOrganisation }</td>
+		<td >${a.compte.statut.nom}</td>
+<%-- 		<td class =" ${a.statut.id eq "P001" ? "red":"yellow"}">bhubbhubhu	</td> --%>
+		<td >	
+		<form action="profildetail/${a.id}" method="POST">
+<!-- 		 <input type="text" style="display:none" id="idProfil" name=""idProfil" value=${a.id}"> -->
+<button class="btn btn-primary" type="submit">Détail</button>
+ </form> </td>
+	
     </tr>
      </c:forEach>
       </tbody>

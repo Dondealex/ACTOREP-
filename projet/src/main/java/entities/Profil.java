@@ -22,7 +22,7 @@ public class Profil implements Serializable{
 	@Column(nullable = true)
 	private String photoProfil;
 	
-	@Column( length = 612, nullable = false)
+	@Column( length = 612, nullable = true)
 	private String offre;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -160,13 +160,20 @@ public class Profil implements Serializable{
 		this.dateDesactivation = dateDesactivation;
 	}
 	
-	
+//	@Override
+//	public Profil selectProfil(String id) {
+//		Long id = Long.valueOf(idprofil);
+//		profil pr = adminDao.selectAdminById(id);
+//		return ad;
+//	}
 
 	@Override
 	public String toString() {
 		return "Profil [id=" + id + ", presentation=" + presentation + ", offre=" + offre + ", dateCreation=" + dateCreation 
 				+ ", dateModification=" + dateModification + ", dateDesactivation=" + dateDesactivation + "]";
 	}
+
+
 	
 	
 

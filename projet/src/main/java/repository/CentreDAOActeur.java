@@ -25,7 +25,11 @@ public class CentreDAOActeur {
 		return a;
 	}
 	
-	
+	public Acteur getActeur (Long id) {
+		Acteur actor = em.find(Acteur.class, id);
+		System.out.print(actor.toString());
+		return actor;
+	}
 	
 	public List<Acteur> selectAllActeurs() {
 		String jpql ="select a from Acteur a";

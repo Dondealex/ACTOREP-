@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import entities.Acteur;
 import entities.Compte;
 import entities.Statut;
 import entities.TypeActeur;
@@ -22,16 +23,16 @@ public class CompteMetierImpl implements CompteMetier {
 
 	@Override
 	public Compte creationCompteIndividu(String nom, String prenom, String email, String mdp, String rue,
-			String codePostal, String tel, Date dateNaiss, TypeActeur typeActeur, Statut statut, Ville ville) {
-		Compte c01 = compteDao.insertCompteIndividu(nom, prenom, email, mdp, rue, codePostal, tel, dateNaiss, typeActeur, statut, ville);
+			String codePostal, String tel, Date dateNaiss, TypeActeur typeActeur, Statut statut, Ville ville, Acteur acteur) {
+		Compte c01 = compteDao.insertCompteIndividu(nom, prenom, email, mdp, rue, codePostal, tel, dateNaiss, typeActeur, statut, ville,acteur);
 		return c01;
 	}
 
 	@Override
-	public Compte creationCompteOragnisation(String nomOrganisation, String email, String mdp, String rue,
+	public Compte creationCompteOrganisation(String nomOrganisation, String email, String mdp, String rue,
 			String codePostal, String tel, Date dateCrea, String numSiret, TypeActeur typeActeur, Statut statut,
-			Ville ville) {
-		Compte c02 = compteDao.insertCompteOrganisation(nomOrganisation, email, mdp, rue, codePostal, tel, dateCrea, numSiret, typeActeur, statut, ville);
+			Ville ville,Acteur acteur) {
+		Compte c02 = compteDao.insertCompteOrganisation(nomOrganisation, email, mdp, rue, codePostal, tel, dateCrea, numSiret, typeActeur, statut, ville,acteur );
 		return c02;
 	}
 
@@ -67,15 +68,15 @@ public class CompteMetierImpl implements CompteMetier {
 
 	@Override
 	public Compte majCompteIndividuId(Long idCompte, String nom, String prenom, String email, String mdp, String rue,
-			String codePostal, String tel, Date dateNaiss, Ville ville) {
-		Compte c = compteDao.updateCompteIndividuById(idCompte, nom, prenom, email, mdp, rue, codePostal, tel, dateNaiss, ville);
+			String codePostal, String tel, Date dateNaiss, Ville ville,Acteur acteur) {
+		Compte c = compteDao.updateCompteIndividuById(idCompte, nom, prenom, email, mdp, rue, codePostal, tel, dateNaiss, ville, acteur);
 		return c;
 	}
 
 	@Override
 	public Compte majCompteOrganisationId(Long idCompte, String nomOrganisation, String email, String mdp, String rue,
-			String codePostal, String tel, Date dateCrea, String numSiret, Ville ville) {
-		Compte c = compteDao.updateCompteOrganisationById(idCompte, nomOrganisation, email, mdp, rue, codePostal, tel, dateCrea, numSiret, ville);
+			String codePostal, String tel, Date dateCrea, String numSiret, Ville ville,Acteur acteur) {
+		Compte c = compteDao.updateCompteOrganisationById(idCompte, nomOrganisation, email, mdp, rue, codePostal, tel, dateCrea, numSiret, ville,acteur);
 		return c;
 	}
 
@@ -96,6 +97,23 @@ public class CompteMetierImpl implements CompteMetier {
 		compteDao.deleteCompteById(idCompte);
 		
 	}
+
+	@Override
+	public Compte creationCompteIndividu(String nom, String prenom, String email, String mdp, String rue,
+			String codePostal, String tel, Date dateNaiss, TypeActeur typeActeur, Statut statut, Ville ville) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Compte creationCompteOragnisation(String nomOrganisation, String email, String mdp, String rue,
+			String codePostal, String tel, Date dateCrea, String numSiret, TypeActeur typeActeur, Statut statut,
+			Ville ville) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	
 	
 	

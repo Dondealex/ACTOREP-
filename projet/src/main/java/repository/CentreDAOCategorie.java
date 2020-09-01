@@ -30,5 +30,9 @@ public class CentreDAOCategorie {
 		return result;
 	}
 	
+	public Categorie selectCategorieById(Long idCat) {
+		Categorie cat = em.find(Categorie.class, idCat);
+		return cat;
+	}
 
 }

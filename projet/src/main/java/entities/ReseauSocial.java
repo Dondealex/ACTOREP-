@@ -25,7 +25,7 @@ public class ReseauSocial implements Serializable {
 	@Column(length = 30, nullable = true)
 	private String nom;
 	
-	@Column(unique = true, length = 200, nullable = true)
+	@Column(unique = false, length = 200, nullable = true)
 	private String url;
 	
 	// ASSOCIATION
@@ -33,10 +33,15 @@ public class ReseauSocial implements Serializable {
 	private Profil profil;
 	
 	// CONSTRUCTORS
-	public ReseauSocial() {
-		
-	}
+	
+	public ReseauSocial() {} 
 
+	public ReseauSocial(String nom, String url,Profil profil) {
+		this.nom = nom;
+		this.url = url;
+		this.profil = profil;
+	}
+	
 	public ReseauSocial(String nom, String url) {
 		this.nom = nom;
 		this.url = url;

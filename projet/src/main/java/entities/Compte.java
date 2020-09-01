@@ -11,22 +11,21 @@ import javax.persistence.*;
 @Entity
 public class Compte implements Serializable {
 	
-	/**
-	 * 
-	 */
+
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(length = 75, nullable = true)
+	@Column(length = 75)
 	private String nom;
 	
-	@Column(length = 75, nullable = true)
+	@Column(length = 75)
 	private String prenom;
 	
-	@Column(length = 75, nullable = true)
+	@Column(length = 75)
 	private String nomOrganisation;
 	
 	@Column(unique = true, length = 100, nullable = false)
@@ -37,6 +36,9 @@ public class Compte implements Serializable {
 	
 	@Column(length = 100, nullable = false)
 	private String rue;
+	
+	@OneToOne
+	private Acteur acteur;
 	
 	@Column(length = 30, nullable = false)
 	private String codePostal;
@@ -52,7 +54,7 @@ public class Compte implements Serializable {
 	@Column(nullable = true)
 	private Date dateCrea;
 	
-	@Column(length = 75, nullable = true)
+	@Column(length = 75)
 	private String numSiret;
 	
 	@ManyToOne
@@ -72,11 +74,10 @@ public class Compte implements Serializable {
 		
 	}
 
-	public Compte(Long id, String nom, String prenom, String nomOrganisation, String email, String mdp, String rue,
+	public Compte(String nom, String prenom, String nomOrganisation, String email, String mdp, String rue,
 			String codePostal, String tel, Date dateNaiss, Date dateCrea, String numSiret, TypeActeur typeActeur,
 			Statut statut, Ville ville, Collection<Profil> profils) {
 		this();
-		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.nomOrganisation = nomOrganisation;
@@ -96,7 +97,7 @@ public class Compte implements Serializable {
 
 	public Compte(String nom, String prenom, String email, String mdp, String rue,
 			String codePostal, String tel, Date dateNaiss, TypeActeur typeActeur,
-			Statut statut, Ville ville) {
+			Statut statut, Ville ville, Acteur acteur) {
 		this();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -109,11 +110,12 @@ public class Compte implements Serializable {
 		this.typeActeur = typeActeur;
 		this.statut = statut;
 		this.ville = ville;
+		this.acteur = acteur;
 	}
 	
 	public Compte(String nomOrganisation, String email, String mdp, String rue,
 			String codePostal, String tel, Date dateCrea, String numSiret, TypeActeur typeActeur,
-			Statut statut, Ville ville) {
+			Statut statut, Ville ville, Acteur acteur) {
 		this();
 		this.nomOrganisation = nomOrganisation;
 		this.email = email;
@@ -126,8 +128,19 @@ public class Compte implements Serializable {
 		this.typeActeur = typeActeur;
 		this.statut = statut;
 		this.ville = ville;
-	}
+		this.acteur = acteur;
+		}
 	
+	
+	
+	
+	public Acteur getActeur() {
+		return acteur;
+	}
+
+	public void setActeur(Acteur acteur){
+		this.acteur = acteur;
+	}
 	
 	public Long getId() {
 		return id;
@@ -136,6 +149,8 @@ public class Compte implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+
 
 	public String getNom() {
 		return nom;

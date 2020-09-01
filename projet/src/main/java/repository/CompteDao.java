@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import entities.Acteur;
 import entities.Compte;
 import entities.Profil;
 import entities.Statut;
@@ -15,11 +16,11 @@ public interface CompteDao {
 	
 	public Compte insertCompteIndividu(String nom, String prenom, String email, String mdp, String rue,
 			String codePostal, String tel, Date dateNaiss, TypeActeur typeActeur,
-			Statut statut, Ville ville);
+			Statut statut, Ville ville,Acteur acteur);
 	
 	public Compte insertCompteOrganisation(String nomOrganisation, String email, String mdp, String rue,
 			String codePostal, String tel, Date dateCrea, String numSiret, TypeActeur typeActeur,
-			Statut statut, Ville ville);
+			Statut statut, Ville ville,Acteur acteur);
 	
 	public Compte selectCompteById(Long idCompte);
 	
@@ -30,10 +31,10 @@ public interface CompteDao {
 	public List<Compte> selectAllCompteByVille(Long idVille);
 	
 	public Compte updateCompteIndividuById(Long idCompte, String nom, String prenom, String email, String mdp, String rue,
-			String codePostal, String tel, Date dateNaiss, Ville ville);
+			String codePostal, String tel, Date dateNaiss, Ville ville,Acteur acteur);
 	
 	public Compte updateCompteOrganisationById(Long idCompte, String nomOrganisation, String email, String mdp, String rue,
-			String codePostal, String tel, Date dateCrea, String numSiret, Ville ville);
+			String codePostal, String tel, Date dateCrea, String numSiret, Ville ville,Acteur acteur);
 	
 	public List<Compte> selectAllCompteActive();
 	

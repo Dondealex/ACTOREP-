@@ -5,16 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Connexion</title>
-<link rel="stylesheet" href="css/style.css" >
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<div id="cadre">
-	<h1>ACTOREP</h1>
-		<form id="formCon" method="post" action="seConnecter">
+<div class="mx-auto border rounded p-5 m-5 bg-secondary text-white" style="width:400px">
+  <h2>ACTOREP</h2><br/>
+		<form id="formCon" method="post" action="sConnecter">
 			<br />
 			<label for="Email">Email<span class="requis">*</span></label>
 			<input type="text" name="email">
@@ -27,17 +23,11 @@
 			<br>
 			<input id="submit" type="submit" value="Se connecter">
 		</form>
-		<p id="error">${error1}</p>
-	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+		<p id ="error">${error1}</p>
+		
+</div>
+
 	<%@ include file = "jspFooter.jsp" %>
-	
 
 </body>
 </html>

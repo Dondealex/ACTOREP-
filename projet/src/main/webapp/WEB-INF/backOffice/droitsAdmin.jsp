@@ -32,7 +32,7 @@
       <table class="table">
     <thead>
       <tr>
-        <th>ID</th>
+        
         <th>Identifiant</th>
         <th>Nom</th>
         <th>Prénom</th>
@@ -44,8 +44,8 @@
     <tbody>
     <c:forEach items="${admins}" var="a">
     <tr>
-    <td><a href="ficheAd?idA=${a.id}">${a.id}</a></td>
-    <td>${a.identifiant}</td>
+<%--     <td><a href="ficheAd?idA=${a.id}">${a.id}</a></td> --%>
+    <td><a href="ficheAd?idA=${a.id}">${a.identifiant}</td>
     <td>${a.nom}</td>
     <td>${a.prenom}</td>
     <td><fmt:formatDate value="${a.dateEntree}" pattern="dd/MM/yyyy"/></td>

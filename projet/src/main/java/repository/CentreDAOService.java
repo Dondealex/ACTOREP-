@@ -35,7 +35,7 @@ public class CentreDAOService {
 	
 	
 	public List<Service> findAllServices() {
-		String jpql ="select * from Service s ";
+		String jpql ="select s from Service s ";
 		TypedQuery<Service> qr = em.createQuery(jpql,Service.class);
 		List<Service> result = qr.getResultList();
 		return result;

@@ -29,7 +29,7 @@ public class Acteur implements Serializable {
 	
 	@OneToMany (mappedBy = "acteur")
 	private Collection<Service>services;
-	
+		
 	public Acteur() {
 	 services = new ArrayList<>();
 }
@@ -51,6 +51,12 @@ public Acteur(String nom, String description, Categorie categorie) {
 	this.categorie = categorie;
 }
 
+public Long getid() {
+	return id;
+}
+public void setId(Long id) {
+	this.id = id;
+}
 
 public String getNom() {
 	return nom;

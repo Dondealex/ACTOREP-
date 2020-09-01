@@ -5,7 +5,7 @@
   <a class="navbar-brand" href="#">Bonjour ${sessionScope['scopedTarget.sessionAdmin'].lastLogIn.prenom}</a>
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="RechercherProfilaValider">Profils à valider</a>
+      <a class="nav-link" href="/RechercherProfilaValider">Profils à valider</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Recherche profil</a>
@@ -15,8 +15,8 @@
         Administrateur
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="droitsAd">Gestion des droits</a>
-        <a class="dropdown-item" href="nvlAd">Nouvel administrateur</a>
+        <a class="dropdown-item" href="/droitsAd">Gestion des droits</a>
+        <a class="dropdown-item" href="/nvlAd">Nouvel administrateur</a>
       </div>
     </li>
    <li class="nav-item">

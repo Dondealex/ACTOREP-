@@ -20,6 +20,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Acteur;
 import entities.Compte;
 import entities.Profil;
 import entities.Statut;
@@ -50,8 +51,8 @@ public class CompteDaoImpl implements CompteDao  {
 	@Override
 	public Compte insertCompteIndividu(String nom, String prenom, String email, String mdp, String rue,
 			String codePostal, String tel, Date dateNaiss, TypeActeur typeActeur,
-			Statut statut, Ville ville) {
-		Compte c = new Compte(nom, prenom, email, mdp, rue, codePostal, tel, dateNaiss, typeActeur, statut, ville);
+			Statut statut, Ville ville,Acteur acteur) {
+		Compte c = new Compte(nom, prenom, email, mdp, rue, codePostal, tel, dateNaiss, typeActeur, statut, ville,acteur);
 		em.persist(c);
 		return c;
 	}
@@ -59,8 +60,8 @@ public class CompteDaoImpl implements CompteDao  {
 	@Override
 	public Compte insertCompteOrganisation(String nomOrganisation, String email, String mdp, String rue,
 			String codePostal, String tel, Date dateCrea, String numSiret, TypeActeur typeActeur, Statut statut,
-			Ville ville) {
-		Compte c = new Compte(nomOrganisation, email, mdp, rue, codePostal, tel, dateCrea,  numSiret, typeActeur, statut, ville);
+			Ville ville,Acteur acteur) {
+		Compte c = new Compte(nomOrganisation, email, mdp, rue, codePostal, tel, dateCrea,  numSiret, typeActeur, statut, ville,acteur);
 		em.persist(c);
 		return c;
 	}
@@ -108,7 +109,7 @@ public class CompteDaoImpl implements CompteDao  {
 	
 	@Override
 	public Compte updateCompteIndividuById(Long idCompte, String nom, String prenom, String email, String mdp,
-			String rue, String codePostal, String tel, Date dateNaiss, Ville ville) {
+			String rue, String codePostal, String tel, Date dateNaiss, Ville ville,Acteur acteur) {
 		Compte c = em.find(Compte.class, idCompte);
 		c.setNom(nom);
 		c.setPrenom(prenom);
@@ -119,13 +120,14 @@ public class CompteDaoImpl implements CompteDao  {
 		c.setTel(tel);
 		c.setDateNaiss(dateNaiss);
 		c.setVille(ville);
+		c.setActeur(acteur);
 		
 		return c;
 	}
 	
 	@Override
 	public Compte updateCompteOrganisationById(Long idCompte, String nomOrganisation, String email, String mdp,
-			String rue, String codePostal, String tel, Date dateCrea, String numSiret, Ville ville) {
+			String rue, String codePostal, String tel, Date dateCrea, String numSiret, Ville ville,Acteur acteur ) {
 		Compte c = em.find(Compte.class, idCompte);
 		c.setNomOrganisation(nomOrganisation);
 		c.setEmail(email);
@@ -136,6 +138,7 @@ public class CompteDaoImpl implements CompteDao  {
 		c.setDateCrea(dateCrea);
 		c.setNumSiret(numSiret);
 		c.setVille(ville);
+		c.setActeur(acteur);
 		return c;
 	}
 

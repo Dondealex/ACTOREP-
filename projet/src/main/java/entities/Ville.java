@@ -1,10 +1,13 @@
 package entities;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
+
+
 
 @Entity
 public class Ville implements Serializable {
@@ -24,7 +27,7 @@ public class Ville implements Serializable {
 	private String nom;
 
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	private Departement departement;
 	
 	@OneToMany (mappedBy = "ville")

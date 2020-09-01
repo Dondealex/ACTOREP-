@@ -8,14 +8,28 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import entities.Administrateur;
+import entities.Profil;
+import entities.ReseauSocial;
 import entities.Statut;
 import metier.AdminService;
+import metier.IProfilMetier;
+import metier.ProfilMetierImpl;
+import repository.CentreDAOService;
+import repository.IProfilRepository;
+import repository.ProfilDAO;
+import repository.ResSocDaoImpl;
+import repository.StatutDaoImpl;
 import session.SessionAdmin;
 
 @Controller
@@ -26,7 +40,26 @@ public class AdminCTRL {
 	private AdminService adminService;
 	
 	@Autowired
+	ProfilMetierImpl profilMet;
+	
+	@Autowired
+	private ProfilDAO profilDao;
+	
+	@Qualifier("iprofilmetier")
+	private ProfilMetierImpl iprofilmetier;
+	
+	@Autowired
+	IProfilRepository ipro;
+	
+	
+	@Autowired
 	private SessionAdmin sessionAdmin;
+	
+	@Autowired
+	ResSocDaoImpl resSocDaoImpl;
+	
+	@Autowired
+	private StatutDaoImpl statutRep;
 	
 	@RequestMapping(value = {"/back"})
 	public String afficherFenetreConnexion() {
@@ -78,6 +111,8 @@ public class AdminCTRL {
 		public String afficherFiche() {
 			return "backOffice/nvlAdmin";
 		}
+	
+
 	
 	@RequestMapping(value = {"/creerAd"})
 	public String creerAdministrateur(@RequestParam HashMap<String, String> params, Model model) {
@@ -164,6 +199,60 @@ public class AdminCTRL {
 		return "backOffice/ficheAdmin";
 	}
 	
+	@RequestMapping(value = {"/searchusers"})
+	public String searchusers(@RequestParam HashMap<String, String> params, Model model) {
+		
+		List<Profil> pr = iprofilmetier.findProfilAValider();
+		
+	
+		model.addAttribute("listp", pr);
+	return "backOffice/RechercherProfilaValider";
+	}
+//	
+	@RequestMapping(value = {"/profildetail/{idProfil}"}, method = RequestMethod.POST)
+	public String profil (@PathVariable long idProfil, Model model) {
+		
+		Profil profil = profilDao.getOne((long) idProfil);
+		model.addAttribute("profil", profil);
+		
+			model.addAttribute("profil", profil);
 
+		
+			List<ReseauSocial> result = resSocDaoImpl.selectReseauSocByProfilId(profil.getId());
+			model.addAttribute("rsList", result);
+			
 
+		return "backOffice/activeProfil";
+		
+	}
+	@RequestMapping(value = {"/profil_detail/{idProfil}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Profil getServicesByActors(@PathVariable Long idProfil) {
+		Profil profil = profilDao.getOne((long) idProfil);
+		//List<Service>  result = serviceRepository.findAllByIdActor(idActeur);
+//	System.out.print(result.size());
+	return  profil;
+}
+	
+	@RequestMapping(value= {"/activerProfil/{idProfil}"}, method = RequestMethod.POST)
+	public String activerProfil(@PathVariable Long idProfil, Model model) {
+		 Profil profil = profilDao.getOne((long) idProfil);
+		 profil.setStatut(statutRep.selectStatutById("P001"));
+		 ipro.saveAndFlush(profil);
+		 
+	return this.searchusers(new HashMap<String, String>(), model);
+	}
+	
+	@RequestMapping(value= "/recherche")
+	public String rechercher() {
+		return "backOffice/jspResultatR";
+	}
+	
+	@RequestMapping(value= {"/RechercherProfilaValider"})
+	public String afficheProfilaValider(Model model) {
+	java.util.List<Profil> listp = profilMet.findProfilAValider();
+		 model.addAttribute("listp", listp);
+		return "backOffice/Accueil";
+	}
+	
 }

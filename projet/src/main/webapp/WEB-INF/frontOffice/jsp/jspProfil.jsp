@@ -24,7 +24,7 @@
 </div>
 
 <div>
-<input type="image" class="photoprofil" src="${photop}">
+<input type="image" class="photoprofil" src="${profil.photoProfil}">
 </div>
 
 <div class='infosprofil' id='infos'>

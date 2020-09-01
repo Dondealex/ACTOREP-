@@ -13,7 +13,7 @@ border: 1px solid black;
 #body {
 color:black;
 background-color:white;
-background-image:url(image/image_de_fond.jpg);
+background-image:url(../image/image_de_fond.jpg);
 background-repeat:no-repeat;
 }
 
@@ -230,7 +230,11 @@ h1.titreprofil
 	
 }
 
-.boutonmodif
-{
-	
+.dropdown-menu {
+  position:relative;
+  width:100%;
+  top: 0px !important;
+    left: 0px !important;
 }
+
+.typeahead { z-index: 1051; }
